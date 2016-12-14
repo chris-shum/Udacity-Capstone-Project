@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity
         fragmentTransaction.add(R.id.fragment_container, firstFragment);
         fragmentTransaction.commit();
 
+        // TODO: 12/14/16 clean up, move out to presenter
+
     }
 
     @Override

@@ -19,6 +19,7 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        // TODO: 12/14/16 constraint layout and add homepage stuff
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
 

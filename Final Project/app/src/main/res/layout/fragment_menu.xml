@@ -4,10 +4,9 @@
     android:layout_height="match_parent"
     tools:context="app.com.loaded.android.loaded.ui.MenuFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/menu_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Menu" />
+        android:layout_height="match_parent" />
 
 </FrameLayout>
