@@ -1,10 +1,12 @@
-package app.com.loaded.android.loaded;
+package app.com.loaded.android.loaded.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import app.com.loaded.android.loaded.R;
 
 
 public class MainFragment extends Fragment {

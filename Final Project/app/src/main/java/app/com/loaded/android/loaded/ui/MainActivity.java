@@ -1,4 +1,4 @@
-package app.com.loaded.android.loaded;
+package app.com.loaded.android.loaded.ui;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,6 +14,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+
+import app.com.loaded.android.loaded.R;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity
         MainFragment firstFragment = new MainFragment();
         fragmentTransaction.add(R.id.fragment_container, firstFragment);
         fragmentTransaction.commit();
+
     }
 
     @Override
