@@ -13,5 +13,4 @@
     tools:context="app.com.loaded.android.loaded.ui.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-
 </FrameLayout>

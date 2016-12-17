@@ -4,14 +4,18 @@ package app.com.loaded.android.loaded.data.model;
  * Created by ShowMe on 12/13/16.
  */
 
-public class MenuItem {
+public class LoadedMenuItem {
     String name;
     String price;
     String description;
     String image;
     String extras;
 
-    public MenuItem(String name, String price, String description, String image, String extras) {
+    public LoadedMenuItem(){
+
+    }
+
+    public LoadedMenuItem(String name, String price, String description, String image, String extras) {
         this.name = name;
         this.price = price;
         this.description = description;

@@ -17,6 +17,7 @@ import android.view.View;
 
 import app.com.loaded.android.loaded.R;
 
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -48,9 +49,9 @@ public class MainActivity extends AppCompatActivity
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        MainFragment firstFragment = new MainFragment();
-        fragmentTransaction.add(R.id.fragment_container, firstFragment);
-        fragmentTransaction.commit();
+//        MainFragment firstFragment = new MainFragment();
+//        fragmentTransaction.add(R.id.fragment_container, firstFragment);
+//        fragmentTransaction.commit();
 
         // TODO: 12/14/16 clean up, move out to presenter
 
