@@ -4,23 +4,21 @@ package app.com.loaded.android.loaded.data.model;
  * Created by ShowMe on 12/13/16.
  */
 
-public class LoadedMenuItem {
+public class LoadedMenu {
     String name;
-    String price;
+    int price;
     String description;
     String image;
-    String extras;
 
-    public LoadedMenuItem(){
 
+    public LoadedMenu(){
     }
 
-    public LoadedMenuItem(String name, String price, String description, String image, String extras) {
+    public LoadedMenu(String name, int price, String description, String image) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.image = image;
-        this.extras = extras;
     }
 
     public String getName() {
@@ -31,11 +29,11 @@ public class LoadedMenuItem {
         this.name = name;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -55,11 +53,4 @@ public class LoadedMenuItem {
         this.image = image;
     }
 
-    public String getExtras() {
-        return extras;
-    }
-
-    public void setExtras(String extras) {
-        this.extras = extras;
-    }
 }

@@ -11,6 +11,9 @@ import app.com.loaded.android.loaded.R;
 
 public class MainFragment extends Fragment {
 
+//    private DatabaseReference mFirebaseDatabaseReference;
+
+
     public MainFragment() {
         // Required empty public constructor
     }
@@ -20,6 +23,13 @@ public class MainFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         // TODO: 12/14/16 constraint layout and add homepage stuff
+
+
+//        How to add to database
+//        mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
+//        LoadedMenu testing = new LoadedMenu("a", "b", "c", "d", "e");
+//        mFirebaseDatabaseReference.child("menu").push().setValue(testing);
+
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
 
