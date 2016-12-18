@@ -4,7 +4,7 @@ package app.com.loaded.android.loaded.data.model;
  * Created by ShowMe on 12/17/16.
  */
 
-public class LoadedMenuItems {
+public class LoadedMenuItems extends Object {
     String name;
     int price;
     boolean available;
