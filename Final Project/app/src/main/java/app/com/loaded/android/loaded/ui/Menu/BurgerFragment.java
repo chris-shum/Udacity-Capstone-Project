@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.com.loaded.android.loaded.R;
+import app.com.loaded.android.loaded.data.Singleton;
 import app.com.loaded.android.loaded.data.model.LoadedMenuItems;
 import app.com.loaded.android.loaded.presenter.UpdateTotal;
 
@@ -45,6 +47,8 @@ public class BurgerFragment extends Fragment {
     TextView totalTextView;
     String lastCheeseItem = "No cheese +$0.00";
     String lastFriesItem = "No fries +$0.00";
+    Button addToCartButton;
+    Singleton singleton;
 
 
     // TODO: 12/18/16 selections add prices and changes textview on bottom total
@@ -60,6 +64,7 @@ public class BurgerFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         firebaseDatabase = FirebaseDatabase.getInstance().getReference();
+        singleton = Singleton.getInstance();
 
         //cooked spinner setup
         spinnerArrayMeat = new ArrayList<String>();
@@ -127,8 +132,20 @@ public class BurgerFragment extends Fragment {
         // Inflate the layout for this fragment
 
         totalTextView = (TextView) view.findViewById(R.id.textView_total);
+        addToCartButton = (Button) view.findViewById(R.id.button_addToCart);
 
-        createBurgerSpinner(view.getContext(), android.R.layout.simple_spinner_item, spinnerArrayMeat, view.findViewById(R.id.spinner_meat));
+        createBurgerSpinner(view.getContext(), android.R.layout.simple_spinner_item, spinnerArrayMeat, view.findViewById(R.id.spinner_meat)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                singleton.setMeat(adapterView.getSelectedItem().toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         createBurgerSpinner(view.getContext(), android.R.layout.simple_spinner_item, spinnerArrayCheeses, view.findViewById(R.id.spinner_cheeses)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -142,8 +159,7 @@ public class BurgerFragment extends Fragment {
                     UpdateTotal.updateBurgerTotal(totalTextView, "Hey $1.25", false);
                 } else {
                 }
-
-
+                singleton.setCheese(currentSelection);
             }
 
             @Override
@@ -156,28 +172,29 @@ public class BurgerFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String currentSelection = adapterView.getSelectedItem().toString();
-                if ((lastFriesItem.equals("No fries +$0.00") || lastFriesItem.equals("Regular +$0.00")) && (currentSelection.equals("No fries +$0.00") || currentSelection.equals("Regular +$0.00"))) {
+                if ((lastFriesItem.equals("No fries +$0.00") || lastFriesItem.equals("Regular fries +$0.00")) && (currentSelection.equals("No fries +$0.00") || currentSelection.equals("Regular fries +$0.00"))) {
                     lastFriesItem = currentSelection;
-                } else if ((lastFriesItem.equals("No fries +$0.00") || lastFriesItem.equals("Regular +$0.00")) && currentSelection.equals("Cheese Fries +$1.25")) {
+                } else if ((lastFriesItem.equals("No fries +$0.00") || lastFriesItem.equals("Regular fries +$0.00")) && currentSelection.equals("Cheese fries +$1.25")) {
                     UpdateTotal.updateBurgerTotal(totalTextView, currentSelection, true);
                     lastFriesItem = currentSelection;
-                } else if ((lastFriesItem.equals("No fries +$0.00") || lastFriesItem.equals("Regular +$0.00")) && currentSelection.equals("Briskey Gravy +$4.00")) {
+                } else if ((lastFriesItem.equals("No fries +$0.00") || lastFriesItem.equals("Regular +$0.00")) && currentSelection.equals("Briskey gravy fries +$4.00")) {
                     UpdateTotal.updateBurgerTotal(totalTextView, currentSelection, true);
                     lastFriesItem = currentSelection;
-                } else if (lastFriesItem.equals("Cheese Fries +$1.25") && currentSelection.equals("Briskey Gravy +$4.00")) {
+                } else if (lastFriesItem.equals("Cheese fries +$1.25") && currentSelection.equals("Briskey gravy fries +$4.00")) {
                     UpdateTotal.updateBurgerTotal(totalTextView, "Hey, $2.75", true);
                     lastFriesItem = currentSelection;
-                } else if (lastFriesItem.equals("Briskey Gravy +$4.00") && currentSelection.equals("Cheese Fries +$1.25")) {
+                } else if (lastFriesItem.equals("Briskey gravy fries +$4.00") && currentSelection.equals("Cheese fries +$1.25")) {
                     UpdateTotal.updateBurgerTotal(totalTextView, "Hey, $2.75", false);
                     lastFriesItem = currentSelection;
-                } else if (lastFriesItem.equals("Briskey Gravy +$4.00") && (currentSelection.equals("Regular +$0.00") || currentSelection.equals("No fries +$0.00"))) {
+                } else if (lastFriesItem.equals("Briskey gravy fries +$4.00") && (currentSelection.equals("Regular fries +$0.00") || currentSelection.equals("No fries +$0.00"))) {
                     UpdateTotal.updateBurgerTotal(totalTextView, "Hey, $4.00", false);
                     lastFriesItem = currentSelection;
-                } else if (lastFriesItem.equals("Cheese Fries +$1.25") && (currentSelection.equals("Regular +$0.00") || currentSelection.equals("No fries +$0.00"))) {
+                } else if (lastFriesItem.equals("Cheese fries +$1.25") && (currentSelection.equals("Regular fries +$0.00") || currentSelection.equals("No fries +$0.00"))) {
                     UpdateTotal.updateBurgerTotal(totalTextView, "Hey, $1.25", false);
                     lastFriesItem = currentSelection;
                 } else {
                 }
+                singleton.setFries(currentSelection);
             }
 
             @Override
@@ -193,8 +210,27 @@ public class BurgerFragment extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView_toppings);
         linearLayoutManager = new LinearLayoutManager(context);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(createFirebaseRecyclerViewAdapter(firebaseDatabase, linearLayoutManager, recyclerView, totalTextView));
+        recyclerView.setAdapter(createFirebaseRecyclerViewAdapter(firebaseDatabase, linearLayoutManager, recyclerView, totalTextView, singleton));
         recyclerView.setLayoutManager(linearLayoutManager);
+
+        addToCartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (singleton.getMeat().equals("Meat")) {
+
+                } else {
+                    singleton.setPrice(totalTextView.getText().toString());
+                    String[] cheese = singleton.getCheese().split("\\+");
+                    if(cheese[0].contains("cheese")){
+                        cheese[0] = "No";
+                    }
+                    String[] fries = singleton.getFries().split("\\+");
+                    totalTextView.setText(singleton.getMeat() + " burger with " + cheese[0] + " cheese   and " + singleton.getToppings().toString() + ". " + fries[0]+" for "+singleton.getPrice());
+                }
+//                opens dialogbox to confirm order
+//                Singleton data needs to add to sqlite through content provider
+            }
+        });
 
         return view;
     }

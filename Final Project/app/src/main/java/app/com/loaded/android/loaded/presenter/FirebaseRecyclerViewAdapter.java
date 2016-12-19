@@ -9,6 +9,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 
 import app.com.loaded.android.loaded.R;
+import app.com.loaded.android.loaded.data.Singleton;
 import app.com.loaded.android.loaded.data.model.LoadedMenuItems;
 
 import static app.com.loaded.android.loaded.presenter.FormatCurrency.formatCurrency;
@@ -18,10 +19,11 @@ import static app.com.loaded.android.loaded.presenter.FormatCurrency.formatCurre
  */
 
 public class FirebaseRecyclerViewAdapter {
+
     public static FirebaseRecyclerAdapter<LoadedMenuItems, ToppingsViewHolder>
     createFirebaseRecyclerViewAdapter(DatabaseReference firebaseDatabase,
                                       final LinearLayoutManager manager,
-                                      final RecyclerView mRecyclerView, final TextView textView) {
+                                      final RecyclerView mRecyclerView, final TextView textView, final Singleton singleton) {
 
         final FirebaseRecyclerAdapter<LoadedMenuItems, ToppingsViewHolder> firebaseReyclerAdapter =
                 new FirebaseRecyclerAdapter<LoadedMenuItems, ToppingsViewHolder>(
@@ -33,11 +35,16 @@ public class FirebaseRecyclerViewAdapter {
                     @Override
                     protected void populateViewHolder(final ToppingsViewHolder viewHolder,
                                                       final LoadedMenuItems toppings, int i) {
-                        viewHolder.nameCheckBox.setText(toppings.getName()+" +"+formatCurrency(toppings.getPrice()));
+                        viewHolder.nameCheckBox.setText(toppings.getName() + " +" + formatCurrency(toppings.getPrice()));
                         viewHolder.nameCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                             @Override
                             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                                 UpdateTotal.updateBurgerTotal(textView, formatCurrency(toppings.getPrice()), b);
+                                if (b) {
+                                    singleton.getToppings().add(toppings.getName());
+                                }else{
+                                    singleton.getToppings().remove(singleton.getToppings().indexOf(toppings.getName()));
+                                }
                             }
                         });
 

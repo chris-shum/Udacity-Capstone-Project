@@ -60,19 +60,19 @@
                 app:layout_constraintTop_toBottomOf="@+id/spinner_meat" />
 
             <TextView
+                android:id="@+id/textView_toppings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView_toppings"
+                android:text="Toppings:"
                 app:layout_constraintLeft_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner_cheeses"
-                android:text="Toppings:" />
+                app:layout_constraintTop_toBottomOf="@+id/spinner_cheeses" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView_toppings"
                 android:layout_width="368dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textView_toppings" />
+                app:layout_constraintTop_toBottomOf="@+id/textView_toppings" />
 
             <TextView
                 android:id="@+id/textView_fries_spinner"
@@ -93,6 +93,17 @@
                 android:layout_marginTop="16dp"
                 app:layout_constraintLeft_toRightOf="@+id/textView_fries_spinner"
                 app:layout_constraintTop_toBottomOf="@+id/recyclerView_toppings" />
+
+            <Button
+                android:id="@+id/button_addToCart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Add to cart"
+                app:layout_constraintRight_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinner_fries" />
 
 
         </android.support.constraint.ConstraintLayout>
