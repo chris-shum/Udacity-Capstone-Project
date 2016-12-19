@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="app.com.loaded.android.loaded.ui.MenuStuff.MenuFragment">
+    tools:context="app.com.loaded.android.loaded.ui.Menu.MenuFragment">
 
     <TextView
         android:id="@+id/burgers"

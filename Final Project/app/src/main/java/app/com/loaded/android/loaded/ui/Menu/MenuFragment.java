@@ -1,4 +1,4 @@
-package app.com.loaded.android.loaded.ui.MenuStuff;
+package app.com.loaded.android.loaded.ui.Menu;
 
 
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import app.com.loaded.android.loaded.R;
 
 public class MenuFragment extends Fragment {
 
-    TextView baaah;
+    TextView burgerTextView;
 
     public MenuFragment() {
         // Required empty public constructor
@@ -26,8 +26,8 @@ public class MenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
 
-        baaah = (TextView) view.findViewById(R.id.burgers);
-        baaah.setOnClickListener(new View.OnClickListener() {
+        burgerTextView = (TextView) view.findViewById(R.id.burgers);
+        burgerTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 clickedText();

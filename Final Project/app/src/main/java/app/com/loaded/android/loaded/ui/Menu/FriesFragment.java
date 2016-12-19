@@ -1,4 +1,4 @@
-package app.com.loaded.android.loaded.ui.MenuStuff;
+package app.com.loaded.android.loaded.ui.Menu;
 
 
 import android.os.Bundle;
@@ -14,6 +14,8 @@ import app.com.loaded.android.loaded.R;
  */
 public class FriesFragment extends Fragment {
 
+    // TODO: 12/18/16 follow burger fragment
+    // TODO: 12/18/16 make BBQ fragment
 
     public FriesFragment() {
         // Required empty public constructor

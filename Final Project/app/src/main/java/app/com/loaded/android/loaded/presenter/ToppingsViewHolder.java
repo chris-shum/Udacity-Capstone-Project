@@ -12,12 +12,12 @@ import app.com.loaded.android.loaded.R;
 
 public class ToppingsViewHolder extends RecyclerView.ViewHolder {
 
-    public CheckBox nameTextView;
+    public CheckBox nameCheckBox;
 
 
     public ToppingsViewHolder(View itemView) {
         super(itemView);
-        nameTextView = (CheckBox) itemView.findViewById(R.id.name);
+        nameCheckBox = (CheckBox) itemView.findViewById(R.id.checkbox_toppings);
     }
 
 }

@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
     <CheckBox
-        android:id="@+id/name"
+        android:id="@+id/checkbox_toppings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

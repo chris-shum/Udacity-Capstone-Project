@@ -4,9 +4,9 @@ package app.com.loaded.android.loaded.data.model;
  * Created by ShowMe on 12/17/16.
  */
 
-public class LoadedMenuItems extends Object {
+public class LoadedMenuItems {
     String name;
-    int price;
+    double price;
     boolean available;
 
     public LoadedMenuItems() {
@@ -26,11 +26,11 @@ public class LoadedMenuItems extends Object {
         this.name = name;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
