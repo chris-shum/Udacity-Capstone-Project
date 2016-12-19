@@ -9,14 +9,13 @@ import android.util.Log;
 
 public class ShoppingCartTable {
 
+    // TODO: 12/19/16 update
+
     // Database table
     public static final String TABLE_SHOPPING_CART = "shoppingcart";
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_NAME = "name";
     public static final String COLUMN_PRICE = "price";
-    public static final String COLUMN_DESCRIPTION = "description";
-    public static final String COLUMN_IMAGE = "image";
-    public static final String COLUMN_EXTRAS = "extras";
 
     // Database creation SQL statement
     private static final String DATABASE_CREATE = "create table "
@@ -24,10 +23,7 @@ public class ShoppingCartTable {
             + "("
             + COLUMN_ID + " integer primary key autoincrement, "
             + COLUMN_NAME + " text not null, "
-            + COLUMN_PRICE + " text not null,"
-            + COLUMN_DESCRIPTION + " text not null,"
-            + COLUMN_IMAGE + " text not null,"
-            + COLUMN_EXTRAS + " text not null"
+            + COLUMN_PRICE + " text not null"
             + ");";
 
     public static void onCreate(SQLiteDatabase database) {

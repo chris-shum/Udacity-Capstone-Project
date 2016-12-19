@@ -19,6 +19,8 @@ import java.util.HashSet;
 
 public class ShoppingCartContentProvider extends ContentProvider {
 
+    // TODO: 12/19/16 update
+
     // database
     private ShoppingCartHelper database;
 
@@ -177,8 +179,7 @@ public class ShoppingCartContentProvider extends ContentProvider {
 
     private void checkColumns(String[] projection) {
         String[] available = { ShoppingCartTable.COLUMN_NAME,
-                ShoppingCartTable.COLUMN_PRICE, ShoppingCartTable.COLUMN_DESCRIPTION,
-                ShoppingCartTable.COLUMN_IMAGE, ShoppingCartTable.COLUMN_EXTRAS,
+                ShoppingCartTable.COLUMN_PRICE,
                 ShoppingCartTable.COLUMN_ID };
         if (projection != null) {
             HashSet<String> requestedColumns = new HashSet<String>(

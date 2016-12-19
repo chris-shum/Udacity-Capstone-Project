@@ -36,6 +36,7 @@ public class FirebaseRecyclerViewAdapter {
                     protected void populateViewHolder(final ToppingsViewHolder viewHolder,
                                                       final LoadedMenuItems toppings, int i) {
                         viewHolder.nameCheckBox.setText(toppings.getName() + " +" + formatCurrency(toppings.getPrice()));
+                        singleton.getToppings().clear();
                         viewHolder.nameCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                             @Override
                             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {

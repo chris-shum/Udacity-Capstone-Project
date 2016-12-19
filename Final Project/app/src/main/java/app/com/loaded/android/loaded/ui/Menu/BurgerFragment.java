@@ -1,7 +1,9 @@
 package app.com.loaded.android.loaded.ui.Menu;
 
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -26,6 +28,8 @@ import java.util.List;
 
 import app.com.loaded.android.loaded.R;
 import app.com.loaded.android.loaded.data.Singleton;
+import app.com.loaded.android.loaded.data.local.ShoppingCartContentProvider;
+import app.com.loaded.android.loaded.data.local.ShoppingCartTable;
 import app.com.loaded.android.loaded.data.model.LoadedMenuItems;
 import app.com.loaded.android.loaded.presenter.UpdateTotal;
 
@@ -150,15 +154,9 @@ public class BurgerFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String currentSelection = adapterView.getSelectedItem().toString();
-                if (lastCheeseItem.equals("No cheese +$0.00") && currentSelection.equals("No cheese +$0.00")) {
-                } else if (lastCheeseItem.equals("No cheese +$0.00") && !currentSelection.equals("No cheese +$0.00")) {
-                    lastCheeseItem = currentSelection;
-                    UpdateTotal.updateBurgerTotal(totalTextView, currentSelection, true);
-                } else if (!lastCheeseItem.equals("No cheese +$0.00") && currentSelection.equals("No cheese +$0.00")) {
-                    lastCheeseItem = "No cheese +$0.00";
-                    UpdateTotal.updateBurgerTotal(totalTextView, "Hey $1.25", false);
-                } else {
-                }
+                UpdateTotal.updateBurgerTotal(totalTextView, lastCheeseItem, false);
+                UpdateTotal.updateBurgerTotal(totalTextView, currentSelection, true);
+                lastCheeseItem = currentSelection;
                 singleton.setCheese(currentSelection);
             }
 
@@ -172,28 +170,9 @@ public class BurgerFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String currentSelection = adapterView.getSelectedItem().toString();
-                if ((lastFriesItem.equals("No fries +$0.00") || lastFriesItem.equals("Regular fries +$0.00")) && (currentSelection.equals("No fries +$0.00") || currentSelection.equals("Regular fries +$0.00"))) {
-                    lastFriesItem = currentSelection;
-                } else if ((lastFriesItem.equals("No fries +$0.00") || lastFriesItem.equals("Regular fries +$0.00")) && currentSelection.equals("Cheese fries +$1.25")) {
-                    UpdateTotal.updateBurgerTotal(totalTextView, currentSelection, true);
-                    lastFriesItem = currentSelection;
-                } else if ((lastFriesItem.equals("No fries +$0.00") || lastFriesItem.equals("Regular +$0.00")) && currentSelection.equals("Briskey gravy fries +$4.00")) {
-                    UpdateTotal.updateBurgerTotal(totalTextView, currentSelection, true);
-                    lastFriesItem = currentSelection;
-                } else if (lastFriesItem.equals("Cheese fries +$1.25") && currentSelection.equals("Briskey gravy fries +$4.00")) {
-                    UpdateTotal.updateBurgerTotal(totalTextView, "Hey, $2.75", true);
-                    lastFriesItem = currentSelection;
-                } else if (lastFriesItem.equals("Briskey gravy fries +$4.00") && currentSelection.equals("Cheese fries +$1.25")) {
-                    UpdateTotal.updateBurgerTotal(totalTextView, "Hey, $2.75", false);
-                    lastFriesItem = currentSelection;
-                } else if (lastFriesItem.equals("Briskey gravy fries +$4.00") && (currentSelection.equals("Regular fries +$0.00") || currentSelection.equals("No fries +$0.00"))) {
-                    UpdateTotal.updateBurgerTotal(totalTextView, "Hey, $4.00", false);
-                    lastFriesItem = currentSelection;
-                } else if (lastFriesItem.equals("Cheese fries +$1.25") && (currentSelection.equals("Regular fries +$0.00") || currentSelection.equals("No fries +$0.00"))) {
-                    UpdateTotal.updateBurgerTotal(totalTextView, "Hey, $1.25", false);
-                    lastFriesItem = currentSelection;
-                } else {
-                }
+                UpdateTotal.updateBurgerTotal(totalTextView, lastFriesItem, false);
+                UpdateTotal.updateBurgerTotal(totalTextView, currentSelection, true);
+                lastFriesItem = currentSelection;
                 singleton.setFries(currentSelection);
             }
 
@@ -217,22 +196,48 @@ public class BurgerFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (singleton.getMeat().equals("Meat")) {
-
                 } else {
-                    singleton.setPrice(totalTextView.getText().toString());
+                    String[] price = totalTextView.getText().toString().split(" ");
+                    singleton.setPrice(price[1]);
                     String[] cheese = singleton.getCheese().split("\\+");
-                    if(cheese[0].contains("cheese")){
-                        cheese[0] = "No";
+                    if (cheese[0].contains("cheese")) {
+                        cheese[0] = "no";
+                    }
+                    String toppings;
+                    if (singleton.getToppings().size() == 0) {
+                        toppings = "no toppings";
+                    } else {
+                        toppings = singleton.getToppings().toString();
                     }
                     String[] fries = singleton.getFries().split("\\+");
-                    totalTextView.setText(singleton.getMeat() + " burger with " + cheese[0] + " cheese   and " + singleton.getToppings().toString() + ". " + fries[0]+" for "+singleton.getPrice());
+                    String outputMessage = singleton.getMeat() + " burger with " + cheese[0].toLowerCase()
+                            + "cheese and " + toppings + ". " + fries[0] + ". ";
+                    totalTextView.setText(outputMessage + singleton.getPrice());
+                    ContentValues contentValues = new ContentValues();
+
+                    contentValues.put(ShoppingCartTable.COLUMN_NAME, outputMessage);
+                    contentValues.put(ShoppingCartTable.COLUMN_PRICE, singleton.getPrice());
+
+                    SaveToDatabase saveToDatabase = new SaveToDatabase();
+                    saveToDatabase.execute(contentValues);
+
                 }
 //                opens dialogbox to confirm order
 //                Singleton data needs to add to sqlite through content provider
             }
         });
 
+
+
         return view;
+    }
+
+    private class SaveToDatabase extends AsyncTask<ContentValues, Void, Void> {
+        @Override
+        protected Void doInBackground(ContentValues... contentValues) {
+            context.getContentResolver().insert(ShoppingCartContentProvider.CONTENT_URI, contentValues[0]);
+            return null;
+        }
     }
 
 }
