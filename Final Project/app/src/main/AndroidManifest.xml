@@ -26,7 +26,6 @@
             android:name=".data.local.ShoppingCartContentProvider"
             android:authorities="app.com.loaded.android.loaded.data.local" />
 
-        <activity android:name=".presenter.ListViewCursorLoader"></activity>
     </application>
 
 </manifest>

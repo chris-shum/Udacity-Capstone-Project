@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import app.com.loaded.android.loaded.R;
 import app.com.loaded.android.loaded.data.Singleton;
@@ -70,26 +71,23 @@ public class CartFragment extends ListFragment implements LoaderManager.LoaderCa
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
 
-//        context = getContext();
-//        button = (Button) view.findViewById(R.id.wompButton);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-////                DeleteAllFromDatabase deleteAllFromDatabase = new DeleteAllFromDatabase();
-////                deleteAllFromDatabase.execute();
-////                DeleteFromDatabase deleteFromDatabase = new DeleteFromDatabase();
-////                deleteFromDatabase.execute();
-//
-//                startActivity(new Intent(view.getContext(), ListViewCursorLoader.class));
-//
-//            }
-//        });
+        context = getContext();
+        button = (Button) view.findViewById(R.id.wompButton);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                DeleteAllFromDatabase deleteAllFromDatabase = new DeleteAllFromDatabase();
+//                deleteAllFromDatabase.execute();
+//                DeleteFromDatabase deleteFromDatabase = new DeleteFromDatabase();
+//                deleteFromDatabase.execute();
+            }
+        });
 
 //        ShoppingCartHelper mHelper = new ShoppingCartHelper(view.getContext());
 //
 //        Cursor cursor = mHelper.getRestaurantList();
 //
-//        listView = (ListView) view.findViewById(R.id.listView);
+
 //
 //        adapter = new CustomCursorAdapter(view.getContext(), cursor);
 //        listView.setAdapter(adapter);
@@ -174,5 +172,14 @@ public class CartFragment extends ListFragment implements LoaderManager.LoaderCa
             context.getContentResolver().delete(ShoppingCartContentProvider.CONTENT_URI, "name = ?", boop);
             return null;
         }
+    }
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+        Cursor cursor = ((CustomCursorAdapter)l.getAdapter()).getCursor();
+        cursor.moveToPosition(position);
+        Toast.makeText(context, "Hey "+ cursor.getString(cursor.getColumnIndex("name")) + cursor.getString(cursor.getColumnIndex("price")), Toast.LENGTH_SHORT).show();
+
     }
 }
