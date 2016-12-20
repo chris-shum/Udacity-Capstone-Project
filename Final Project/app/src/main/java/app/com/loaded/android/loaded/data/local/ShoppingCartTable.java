@@ -16,9 +16,10 @@ public class ShoppingCartTable {
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_NAME = "name";
     public static final String COLUMN_PRICE = "price";
+    public static final String[] RESTAURANT_COLUMNS = {COLUMN_ID, COLUMN_NAME, COLUMN_PRICE};
 
     // Database creation SQL statement
-    private static final String DATABASE_CREATE = "create table "
+    public static final String DATABASE_CREATE = "create table "
             + TABLE_SHOPPING_CART
             + "("
             + COLUMN_ID + " integer primary key autoincrement, "
@@ -38,5 +39,6 @@ public class ShoppingCartTable {
         database.execSQL("DROP TABLE IF EXISTS " + TABLE_SHOPPING_CART);
         onCreate(database);
     }
+
 }
 

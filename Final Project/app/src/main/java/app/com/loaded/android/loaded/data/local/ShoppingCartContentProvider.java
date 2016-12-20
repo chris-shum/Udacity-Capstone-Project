@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.text.TextUtils;
+import android.util.Log;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -41,6 +42,7 @@ public class ShoppingCartContentProvider extends ContentProvider {
 
     private static final UriMatcher sURIMatcher = new UriMatcher(
             UriMatcher.NO_MATCH);
+
     static {
         sURIMatcher.addURI(AUTHORITY, BASE_PATH, SHOPPING_CARTS);
         sURIMatcher.addURI(AUTHORITY, BASE_PATH + "/#", SHOPPING_CART_ID);
@@ -77,14 +79,19 @@ public class ShoppingCartContentProvider extends ContentProvider {
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);
         }
+        if (database == null) {
+            Log.d("test", "it's null");
+            return null;
+        } else {
+            Log.d("test", "hmmm");
+            SQLiteDatabase db = database.getWritableDatabase();
+            Cursor cursor = queryBuilder.query(db, projection, selection,
+                    selectionArgs, null, null, sortOrder);
+            // make sure that potential listeners are getting notified
+            cursor.setNotificationUri(getContext().getContentResolver(), uri);
 
-        SQLiteDatabase db = database.getWritableDatabase();
-        Cursor cursor = queryBuilder.query(db, projection, selection,
-                selectionArgs, null, null, sortOrder);
-        // make sure that potential listeners are getting notified
-        cursor.setNotificationUri(getContext().getContentResolver(), uri);
-
-        return cursor;
+            return cursor;
+        }
     }
 
     @Override
@@ -178,9 +185,9 @@ public class ShoppingCartContentProvider extends ContentProvider {
     }
 
     private void checkColumns(String[] projection) {
-        String[] available = { ShoppingCartTable.COLUMN_NAME,
+        String[] available = {ShoppingCartTable.COLUMN_NAME,
                 ShoppingCartTable.COLUMN_PRICE,
-                ShoppingCartTable.COLUMN_ID };
+                ShoppingCartTable.COLUMN_ID};
         if (projection != null) {
             HashSet<String> requestedColumns = new HashSet<String>(
                     Arrays.asList(projection));
@@ -193,5 +200,8 @@ public class ShoppingCartContentProvider extends ContentProvider {
             }
         }
     }
+
+
+
 
 }

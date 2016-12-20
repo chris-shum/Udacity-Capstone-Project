@@ -209,10 +209,10 @@ public class BurgerFragment extends Fragment {
                     } else {
                         toppings = singleton.getToppings().toString();
                     }
-                    String[] fries = singleton.getFries().split(" ");
+                    String[] fries = singleton.getFries().split(" \\+");
                     String outputMessage = singleton.getMeat() + " burger with " + cheese[0].toLowerCase()
                             + "cheese and " + toppings + ". \n" + fries[0] + ". ";
-                    totalTextView.setText(outputMessage + singleton.getPrice());
+                    totalTextView.setText(outputMessage + "\n"+singleton.getPrice());
                     ContentValues contentValues = new ContentValues();
 
                     contentValues.put(ShoppingCartTable.COLUMN_NAME, outputMessage);
