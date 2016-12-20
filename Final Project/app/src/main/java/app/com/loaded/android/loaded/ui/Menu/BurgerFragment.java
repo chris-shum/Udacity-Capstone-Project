@@ -201,7 +201,7 @@ public class BurgerFragment extends Fragment {
                     singleton.setPrice(price[1]);
                     String[] cheese = singleton.getCheese().split("\\+");
                     if (cheese[0].contains("cheese")) {
-                        cheese[0] = "no";
+                        cheese[0] = "no ";
                     }
                     String toppings;
                     if (singleton.getToppings().size() == 0) {
@@ -209,9 +209,9 @@ public class BurgerFragment extends Fragment {
                     } else {
                         toppings = singleton.getToppings().toString();
                     }
-                    String[] fries = singleton.getFries().split("\\+");
+                    String[] fries = singleton.getFries().split(" ");
                     String outputMessage = singleton.getMeat() + " burger with " + cheese[0].toLowerCase()
-                            + "cheese and " + toppings + ". " + fries[0] + ". ";
+                            + "cheese and " + toppings + ". \n" + fries[0] + ". ";
                     totalTextView.setText(outputMessage + singleton.getPrice());
                     ContentValues contentValues = new ContentValues();
 
