@@ -8,15 +8,15 @@ import android.widget.TextView;
 
 public class UpdateTotal {
 
-    public static void updateBurgerTotal(TextView textView, String cost, boolean topping) {
+    public static void updateBurgerTotal(TextView textView, String cost, boolean add) {
         String[] splitString = textView.getText().toString().split("\\$");
         double originalPrice = Double.valueOf(splitString[1]);
         String[] splitCost = cost.split("\\$");
-        double toppingsPrice = Double.valueOf(splitCost[1]);
-        if(topping){
-            textView.setText("Total: "+FormatCurrency.formatCurrency(originalPrice+toppingsPrice));
+        double additionalPrice = Double.valueOf(splitCost[1]);
+        if(add){
+            textView.setText("Total: "+FormatCurrency.formatCurrency(originalPrice+additionalPrice));
         }else{
-            textView.setText("Total: "+FormatCurrency.formatCurrency(originalPrice-toppingsPrice));
+            textView.setText("Total: "+FormatCurrency.formatCurrency(originalPrice-additionalPrice));
         }
     }
 }

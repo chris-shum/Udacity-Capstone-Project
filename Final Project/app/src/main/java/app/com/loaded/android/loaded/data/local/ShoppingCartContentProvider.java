@@ -1,7 +1,6 @@
 package app.com.loaded.android.loaded.data.local;
 
 import android.content.ContentProvider;
-import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
@@ -9,7 +8,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.text.TextUtils;
-import android.util.Log;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -19,8 +17,6 @@ import java.util.HashSet;
  */
 
 public class ShoppingCartContentProvider extends ContentProvider {
-
-    // TODO: 12/19/16 update
 
     // database
     private ShoppingCartHelper database;
@@ -35,10 +31,10 @@ public class ShoppingCartContentProvider extends ContentProvider {
     public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY
             + "/" + BASE_PATH);
 
-    public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE
-            + "/shoppingcarts";
-    public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE
-            + "/shoppingcart";
+//    public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE
+//            + "/shoppingcarts";
+//    public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE
+//            + "/shoppingcart";
 
     private static final UriMatcher sURIMatcher = new UriMatcher(
             UriMatcher.NO_MATCH);
@@ -79,19 +75,13 @@ public class ShoppingCartContentProvider extends ContentProvider {
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);
         }
-        if (database == null) {
-            Log.d("test", "it's null");
-            return null;
-        } else {
-            Log.d("test", "hmmm");
-            SQLiteDatabase db = database.getWritableDatabase();
-            Cursor cursor = queryBuilder.query(db, projection, selection,
-                    selectionArgs, null, null, sortOrder);
-            // make sure that potential listeners are getting notified
-            cursor.setNotificationUri(getContext().getContentResolver(), uri);
+        SQLiteDatabase db = database.getWritableDatabase();
+        Cursor cursor = queryBuilder.query(db, projection, selection,
+                selectionArgs, null, null, sortOrder);
+        // make sure that potential listeners are getting notified
+        cursor.setNotificationUri(getContext().getContentResolver(), uri);
 
-            return cursor;
-        }
+        return cursor;
     }
 
     @Override
@@ -185,7 +175,7 @@ public class ShoppingCartContentProvider extends ContentProvider {
     }
 
     private void checkColumns(String[] projection) {
-        String[] available = {ShoppingCartTable.COLUMN_NAME,
+        String[] available = {ShoppingCartTable.COLUMN_DESCRIPTION,
                 ShoppingCartTable.COLUMN_PRICE,
                 ShoppingCartTable.COLUMN_ID};
         if (projection != null) {
@@ -200,8 +190,4 @@ public class ShoppingCartContentProvider extends ContentProvider {
             }
         }
     }
-
-
-
-
 }

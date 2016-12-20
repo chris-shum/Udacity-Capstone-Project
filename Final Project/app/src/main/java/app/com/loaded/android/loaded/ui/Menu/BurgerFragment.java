@@ -31,10 +31,11 @@ import app.com.loaded.android.loaded.data.Singleton;
 import app.com.loaded.android.loaded.data.local.ShoppingCartContentProvider;
 import app.com.loaded.android.loaded.data.local.ShoppingCartTable;
 import app.com.loaded.android.loaded.data.model.LoadedMenuItems;
+import app.com.loaded.android.loaded.presenter.BuildOrderString;
 import app.com.loaded.android.loaded.presenter.UpdateTotal;
 
+import static app.com.loaded.android.loaded.adapters.FirebaseToppingsRecyclerViewAdapter.createFirebaseRecyclerViewAdapter;
 import static app.com.loaded.android.loaded.presenter.CreateSpinner.createBurgerSpinner;
-import static app.com.loaded.android.loaded.presenter.FirebaseRecyclerViewAdapter.createFirebaseRecyclerViewAdapter;
 import static app.com.loaded.android.loaded.presenter.FormatCurrency.formatCurrency;
 
 /**
@@ -42,17 +43,17 @@ import static app.com.loaded.android.loaded.presenter.FormatCurrency.formatCurre
  */
 public class BurgerFragment extends Fragment {
 
-    List<String> spinnerArrayMeat, spinnerArrayCheeses, spinnerArrayFries;
-    List<LoadedMenuItems> cheesesArray, friesArray;
-    DatabaseReference firebaseDatabase;
-    private Context context;
-    private RecyclerView recyclerView;
-    private LinearLayoutManager linearLayoutManager;
-    TextView totalTextView;
-    String lastCheeseItem = "No cheese +$0.00";
-    String lastFriesItem = "No fries +$0.00";
-    Button addToCartButton;
-    Singleton singleton;
+    List<String> mSpinnerMeatArray, mSpinnerCheesesArray, mSpinnerFriesArray;
+    List<LoadedMenuItems> mCheesesObjectArray, mFriesObjectArray;
+    DatabaseReference mFirebaseDatabase;
+    private Context mContext;
+    private RecyclerView mRecyclerView;
+    private LinearLayoutManager mLinearLayoutManager;
+    TextView mTotalTextView;
+    String mLastCheeseItem = "No cheese +$0.00";
+    String mLastFriesItem = "No fries +$0.00";
+    Button mAddToCartButton;
+    Singleton mSingleton;
 
 
     // TODO: 12/18/16 selections add prices and changes textview on bottom total
@@ -67,26 +68,27 @@ public class BurgerFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        firebaseDatabase = FirebaseDatabase.getInstance().getReference();
-        singleton = Singleton.getInstance();
+        mFirebaseDatabase = FirebaseDatabase.getInstance().getReference();
+        mSingleton = Singleton.getInstance();
+        mContext = getContext();
 
         //cooked spinner setup
-        spinnerArrayMeat = new ArrayList<String>();
-        cheesesArray = new ArrayList<LoadedMenuItems>();
-        friesArray = new ArrayList<LoadedMenuItems>();
-        spinnerArrayCheeses = new ArrayList<String>();
-        spinnerArrayFries = new ArrayList<String>();
+        mSpinnerMeatArray = new ArrayList<String>();
+        mCheesesObjectArray = new ArrayList<LoadedMenuItems>();
+        mFriesObjectArray = new ArrayList<LoadedMenuItems>();
+        mSpinnerCheesesArray = new ArrayList<String>();
+        mSpinnerFriesArray = new ArrayList<String>();
 
-        spinnerArrayMeat.add("Meat");
-        spinnerArrayCheeses.add("No cheese +$0.00");
-        spinnerArrayFries.add("No fries +$0.00");
+        mSpinnerMeatArray.add("Meat");
+        mSpinnerCheesesArray.add(mLastCheeseItem);
+        mSpinnerFriesArray.add(mLastFriesItem);
 
         // TODO: 12/18/16 create method to make these firebase calls
-        firebaseDatabase.child("menu").child("-Burger").child("cooked").addValueEventListener(new ValueEventListener() {
+        mFirebaseDatabase.child("menu").child("-Burger").child("cooked").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 List<String> td = (ArrayList<String>) dataSnapshot.getValue();
-                spinnerArrayMeat.addAll(td);
+                mSpinnerMeatArray.addAll(td);
             }
 
             @Override
@@ -95,14 +97,14 @@ public class BurgerFragment extends Fragment {
             }
         });
 
-        firebaseDatabase.child("menu").child("-Burger").child("cheeses").addValueEventListener(new ValueEventListener() {
+        mFirebaseDatabase.child("menu").child("-Burger").child("cheeses").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     LoadedMenuItems post = postSnapshot.getValue(LoadedMenuItems.class);
-                    cheesesArray.add(post);
-                    spinnerArrayCheeses.add(post.getName() + " +" + formatCurrency(post.getPrice()));
+                    mCheesesObjectArray.add(post);
+                    mSpinnerCheesesArray.add(post.getName() + " +" + formatCurrency(post.getPrice()));
                 }
             }
 
@@ -111,14 +113,14 @@ public class BurgerFragment extends Fragment {
             }
         });
 
-        firebaseDatabase.child("menu").child("-Fries").child("types").addValueEventListener(new ValueEventListener() {
+        mFirebaseDatabase.child("menu").child("-Fries").child("types").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     LoadedMenuItems post = postSnapshot.getValue(LoadedMenuItems.class);
-                    friesArray.add(post);
-                    spinnerArrayFries.add(post.getName() + " +" + formatCurrency(post.getPrice() - 2));
+                    mFriesObjectArray.add(post);
+                    mSpinnerFriesArray.add(post.getName() + " +" + formatCurrency(post.getPrice() - 2));
                 }
             }
 
@@ -133,15 +135,13 @@ public class BurgerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_burger, container, false);
-        // Inflate the layout for this fragment
+        mTotalTextView = (TextView) view.findViewById(R.id.textView_burgerTotal);
+        mAddToCartButton = (Button) view.findViewById(R.id.button_addToCart);
 
-        totalTextView = (TextView) view.findViewById(R.id.textView_total);
-        addToCartButton = (Button) view.findViewById(R.id.button_addToCart);
-
-        createBurgerSpinner(view.getContext(), android.R.layout.simple_spinner_item, spinnerArrayMeat, view.findViewById(R.id.spinner_meat)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        createBurgerSpinner(view.getContext(), android.R.layout.simple_spinner_item, mSpinnerMeatArray, view.findViewById(R.id.spinner_meat)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                singleton.setMeat(adapterView.getSelectedItem().toString());
+                mSingleton.setMeat(adapterView.getSelectedItem().toString());
             }
 
             @Override
@@ -150,14 +150,14 @@ public class BurgerFragment extends Fragment {
             }
         });
 
-        createBurgerSpinner(view.getContext(), android.R.layout.simple_spinner_item, spinnerArrayCheeses, view.findViewById(R.id.spinner_cheeses)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        createBurgerSpinner(view.getContext(), android.R.layout.simple_spinner_item, mSpinnerCheesesArray, view.findViewById(R.id.spinner_cheeses)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String currentSelection = adapterView.getSelectedItem().toString();
-                UpdateTotal.updateBurgerTotal(totalTextView, lastCheeseItem, false);
-                UpdateTotal.updateBurgerTotal(totalTextView, currentSelection, true);
-                lastCheeseItem = currentSelection;
-                singleton.setCheese(currentSelection);
+                UpdateTotal.updateBurgerTotal(mTotalTextView, mLastCheeseItem, false);
+                UpdateTotal.updateBurgerTotal(mTotalTextView, currentSelection, true);
+                mLastCheeseItem = currentSelection;
+                mSingleton.setCheese(currentSelection);
             }
 
             @Override
@@ -166,14 +166,14 @@ public class BurgerFragment extends Fragment {
             }
         });
 
-        createBurgerSpinner(view.getContext(), android.R.layout.simple_spinner_item, spinnerArrayFries, view.findViewById(R.id.spinner_fries)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        createBurgerSpinner(view.getContext(), android.R.layout.simple_spinner_item, mSpinnerFriesArray, view.findViewById(R.id.spinner_fries)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String currentSelection = adapterView.getSelectedItem().toString();
-                UpdateTotal.updateBurgerTotal(totalTextView, lastFriesItem, false);
-                UpdateTotal.updateBurgerTotal(totalTextView, currentSelection, true);
-                lastFriesItem = currentSelection;
-                singleton.setFries(currentSelection);
+                UpdateTotal.updateBurgerTotal(mTotalTextView, mLastFriesItem, false);
+                UpdateTotal.updateBurgerTotal(mTotalTextView, currentSelection, true);
+                mLastFriesItem = currentSelection;
+                mSingleton.setFries(currentSelection);
             }
 
             @Override
@@ -181,63 +181,35 @@ public class BurgerFragment extends Fragment {
 
             }
         });
-
-        firebaseDatabase = FirebaseDatabase.getInstance().getReference();
-        context = getContext();
 
         //Initializes Recycler View and Layout Manager.
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView_toppings);
-        linearLayoutManager = new LinearLayoutManager(context);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(createFirebaseRecyclerViewAdapter(firebaseDatabase, linearLayoutManager, recyclerView, totalTextView, singleton));
-        recyclerView.setLayoutManager(linearLayoutManager);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView_toppings);
+        mLinearLayoutManager = new LinearLayoutManager(mContext);
+        mRecyclerView.setAdapter(createFirebaseRecyclerViewAdapter(mFirebaseDatabase, mLinearLayoutManager, mRecyclerView, mTotalTextView, mSingleton));
+        mRecyclerView.setLayoutManager(mLinearLayoutManager);
 
-        addToCartButton.setOnClickListener(new View.OnClickListener() {
+        mAddToCartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (singleton.getMeat().equals("Meat")) {
+                if (mSingleton.getMeat().equals("Meat")) {
                 } else {
-                    String[] price = totalTextView.getText().toString().split(" ");
-                    singleton.setPrice(price[1]);
-                    String[] cheese = singleton.getCheese().split("\\+");
-                    if (cheese[0].contains("cheese")) {
-                        cheese[0] = "no ";
-                    }
-                    String toppings;
-                    if (singleton.getToppings().size() == 0) {
-                        toppings = "no toppings";
-                    } else {
-                        toppings = singleton.getToppings().toString();
-                    }
-                    String[] fries = singleton.getFries().split(" \\+");
-                    String outputMessage = singleton.getMeat() + " burger with " + cheese[0].toLowerCase()
-                            + "cheese and " + toppings + ". \n" + fries[0] + ". ";
-                    totalTextView.setText(outputMessage + "\n"+singleton.getPrice());
                     ContentValues contentValues = new ContentValues();
-
-                    contentValues.put(ShoppingCartTable.COLUMN_NAME, outputMessage);
-                    contentValues.put(ShoppingCartTable.COLUMN_PRICE, singleton.getPrice());
-
-                    SaveToDatabase saveToDatabase = new SaveToDatabase();
+                    contentValues.put(ShoppingCartTable.COLUMN_DESCRIPTION, BuildOrderString.buildBurgerOrder(mTotalTextView));
+                    contentValues.put(ShoppingCartTable.COLUMN_PRICE, mSingleton.getPrice());
+                    BurgerFragment.SaveToDatabase saveToDatabase = new BurgerFragment.SaveToDatabase();
                     saveToDatabase.execute(contentValues);
-
                 }
-//                opens dialogbox to confirm order
-//                Singleton data needs to add to sqlite through content provider
+                // TODO: 12/20/16 open dialogbox to confirm order
             }
         });
-
-
-
         return view;
     }
 
     private class SaveToDatabase extends AsyncTask<ContentValues, Void, Void> {
         @Override
         protected Void doInBackground(ContentValues... contentValues) {
-            context.getContentResolver().insert(ShoppingCartContentProvider.CONTENT_URI, contentValues[0]);
+            mContext.getContentResolver().insert(ShoppingCartContentProvider.CONTENT_URI, contentValues[0]);
             return null;
         }
     }
-
 }

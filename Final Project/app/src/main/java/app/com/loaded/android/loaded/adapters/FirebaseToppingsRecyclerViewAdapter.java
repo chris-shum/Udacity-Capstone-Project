@@ -1,4 +1,4 @@
-package app.com.loaded.android.loaded.presenter;
+package app.com.loaded.android.loaded.adapters;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +11,7 @@ import com.google.firebase.database.DatabaseReference;
 import app.com.loaded.android.loaded.R;
 import app.com.loaded.android.loaded.data.Singleton;
 import app.com.loaded.android.loaded.data.model.LoadedMenuItems;
+import app.com.loaded.android.loaded.presenter.UpdateTotal;
 
 import static app.com.loaded.android.loaded.presenter.FormatCurrency.formatCurrency;
 
@@ -18,7 +19,7 @@ import static app.com.loaded.android.loaded.presenter.FormatCurrency.formatCurre
  * Created by ShowMe on 12/18/16.
  */
 
-public class FirebaseRecyclerViewAdapter {
+public class FirebaseToppingsRecyclerViewAdapter {
 
     public static FirebaseRecyclerAdapter<LoadedMenuItems, ToppingsViewHolder>
     createFirebaseRecyclerViewAdapter(DatabaseReference firebaseDatabase,
@@ -30,14 +31,16 @@ public class FirebaseRecyclerViewAdapter {
                         LoadedMenuItems.class,
                         R.layout.toppings_card,
                         ToppingsViewHolder.class,
+                        // TODO: 12/20/16 something about child texts
                         firebaseDatabase.child("menu").child("-Burger").child("toppings")
                 ) {
                     @Override
                     protected void populateViewHolder(final ToppingsViewHolder viewHolder,
                                                       final LoadedMenuItems toppings, int i) {
-                        viewHolder.nameCheckBox.setText(toppings.getName() + " +" + formatCurrency(toppings.getPrice()));
+                        // TODO: 12/20/16 string builder?
+                        viewHolder.mNameCheckBox.setText(toppings.getName() + " +" + formatCurrency(toppings.getPrice()));
                         singleton.getToppings().clear();
-                        viewHolder.nameCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                        viewHolder.mNameCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                             @Override
                             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                                 UpdateTotal.updateBurgerTotal(textView, formatCurrency(toppings.getPrice()), b);
@@ -48,7 +51,6 @@ public class FirebaseRecyclerViewAdapter {
                                 }
                             }
                         });
-
                     }
                 };
 

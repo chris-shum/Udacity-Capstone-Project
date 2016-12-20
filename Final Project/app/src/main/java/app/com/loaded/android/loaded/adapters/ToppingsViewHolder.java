@@ -1,4 +1,4 @@
-package app.com.loaded.android.loaded.presenter;
+package app.com.loaded.android.loaded.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -12,12 +12,11 @@ import app.com.loaded.android.loaded.R;
 
 public class ToppingsViewHolder extends RecyclerView.ViewHolder {
 
-    public CheckBox nameCheckBox;
-
+    public CheckBox mNameCheckBox;
 
     public ToppingsViewHolder(View itemView) {
         super(itemView);
-        nameCheckBox = (CheckBox) itemView.findViewById(R.id.checkbox_toppings);
+        mNameCheckBox = (CheckBox) itemView.findViewById(R.id.checkbox_toppings);
     }
 
 }

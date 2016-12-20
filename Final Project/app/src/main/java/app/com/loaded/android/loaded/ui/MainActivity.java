@@ -35,15 +35,13 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        // TODO: 12/14/16 clean up, move out to presenter
-
+        // TODO: 12/20/16 create method to make this to presenter
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         MainFragment firstFragment = new MainFragment();
         fragmentTransaction.add(R.id.fragment_container, firstFragment);
         fragmentTransaction.commit();
-
     }
 
     @Override
@@ -62,6 +60,7 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        // TODO: 12/20/16 figure out backstack?
         Fragment fragment = null;
         Class fragmentClass;
 
