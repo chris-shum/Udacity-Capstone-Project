@@ -16,7 +16,7 @@ public class ShoppingCartTable {
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_NAME = "name";
     public static final String COLUMN_PRICE = "price";
-    public static final String[] RESTAURANT_COLUMNS = {COLUMN_ID, COLUMN_NAME, COLUMN_PRICE};
+    public static final String[] RESTAURANT_COLUMNS = {COLUMN_NAME, COLUMN_PRICE, COLUMN_ID};
 
     // Database creation SQL statement
     public static final String DATABASE_CREATE = "create table "

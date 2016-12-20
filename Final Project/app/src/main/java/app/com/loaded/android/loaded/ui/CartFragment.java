@@ -3,12 +3,11 @@ package app.com.loaded.android.loaded.ui;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -22,18 +21,39 @@ import android.widget.ListView;
 import app.com.loaded.android.loaded.R;
 import app.com.loaded.android.loaded.data.Singleton;
 import app.com.loaded.android.loaded.data.local.ShoppingCartContentProvider;
-import app.com.loaded.android.loaded.presenter.ListViewCursorLoader;
+import app.com.loaded.android.loaded.data.local.ShoppingCartTable;
+import app.com.loaded.android.loaded.presenter.CustomCursorAdapter;
 
-public class CartFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>{
+public class CartFragment extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
     Button button;
     private Context context;
     ListView listView;
-    CursorAdapter mCursorAdapter;
-    Cursor cursor;
     private static final int LOADER_ID = 0x02;
     private CursorAdapter adapter;
+    Cursor cursor;
 
+    CursorAdapter mAdapter;
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        getLoaderManager().initLoader(0, null, this);
+
+        mAdapter = new CustomCursorAdapter(getActivity(), cursor);
+
+//        mAdapter = new SimpleCursorAdapter(getActivity(),
+//                android.R.layout.simple_list_item_2, null,
+//                ShoppingCartTable.RESTAURANT_COLUMNS,
+//                new int[]{android.R.id.text1, android.R.id.text2}, 0);
+        setListAdapter(mAdapter);
+
+        // Start out with a progress indicator.
+//        setListShown(false);
+
+        // Prepare the loader.  Either re-connect with an existing one,
+        // or start a new one.
+    }
 
     public CartFragment() {
         // Required empty public constructor
@@ -42,35 +62,40 @@ public class CartFragment extends Fragment implements LoaderManager.LoaderCallba
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        getActivity().getSupportLoaderManager().restartLoader(LOADER_ID, null, this);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
-        getActivity().getSupportLoaderManager().initLoader(LOADER_ID, null, this);
 
-        context = getContext();
-        listView = (ListView) view.findViewById(R.id.listView);
-        button = (Button) view.findViewById(R.id.wompButton);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                DeleteAllFromDatabase deleteAllFromDatabase = new DeleteAllFromDatabase();
-//                deleteAllFromDatabase.execute();
-//                DeleteFromDatabase deleteFromDatabase = new DeleteFromDatabase();
-//                deleteFromDatabase.execute();
+//        context = getContext();
+//        button = (Button) view.findViewById(R.id.wompButton);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                DeleteAllFromDatabase deleteAllFromDatabase = new DeleteAllFromDatabase();
+////                deleteAllFromDatabase.execute();
+////                DeleteFromDatabase deleteFromDatabase = new DeleteFromDatabase();
+////                deleteFromDatabase.execute();
+//
+//                startActivity(new Intent(view.getContext(), ListViewCursorLoader.class));
+//
+//            }
+//        });
 
-                startActivity(new Intent(view.getContext(),ListViewCursorLoader.class));
-
-            }
-        });
+//        ShoppingCartHelper mHelper = new ShoppingCartHelper(view.getContext());
+//
+//        Cursor cursor = mHelper.getRestaurantList();
+//
+//        listView = (ListView) view.findViewById(R.id.listView);
+//
+//        adapter = new CustomCursorAdapter(view.getContext(), cursor);
+//        listView.setAdapter(adapter);
 
 //        QueryDatabase queryDatabase = new QueryDatabase();
 //        queryDatabase.execute();
-//        ShoppingCartHelper mHelper = new ShoppingCartHelper(view.getContext());
-//        Cursor cursor = mHelper.getRestaurantList();
 ////        mCursorAdapter = new SimpleCursorAdapter(view.getContext(), android.R.layout.simple_list_item_1, cursor, new String[]{ShoppingCartTable.COLUMN_PRICE}, new int[]{android.R.id.text1}, 0);
 //        mCursorAdapter = new CustomCursorAdapter(view.getContext(), cursor);
 //        listView.setAdapter(mCursorAdapter);
@@ -82,13 +107,25 @@ public class CartFragment extends Fragment implements LoaderManager.LoaderCallba
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+
         return new CursorLoader(getContext(),
                 ShoppingCartContentProvider.CONTENT_URI
-                , new String[]{"name"}, null, null, null);
+                , ShoppingCartTable.RESTAURANT_COLUMNS, null, null, null);
     }
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+//        adapter.swapCursor(cursor);
+//        adapter.notifyDataSetChanged();
+
+        mAdapter.swapCursor(data);
+
+        // The list should now be shown.
+//        if (isResumed()) {
+//            setListShown(true);
+//        } else {
+//            setListShownNoAnimation(true);
+//        }
 
     }
 

@@ -34,7 +34,7 @@ public class ListViewCursorLoader extends FragmentActivity implements
 //        adapter = new SimpleCursorAdapter(this, R.layout.items_row, null,
 //                ShoppingCartTable.RESTAURANT_COLUMNS, new int[]{R.id.item_order},
 //                Adapter.NO_SELECTION);
-        ListView listView = (ListView) findViewById(R.id.listView);
+        ListView listView = (ListView) findViewById(android.R.id.list);
 //        listView.setAdapter(adapter);
 
         adapter = new CustomCursorAdapter(this, cursor);
