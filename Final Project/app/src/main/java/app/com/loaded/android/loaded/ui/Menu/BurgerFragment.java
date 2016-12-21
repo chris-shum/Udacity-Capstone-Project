@@ -104,7 +104,8 @@ public class BurgerFragment extends Fragment {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     LoadedMenuItems post = postSnapshot.getValue(LoadedMenuItems.class);
                     mCheesesObjectArray.add(post);
-                    mSpinnerCheesesArray.add(post.getName() + " +" + formatCurrency(post.getPrice()));
+                    if(post.isAvailable()){
+                    mSpinnerCheesesArray.add(post.getName() + " +" + formatCurrency(post.getPrice()));}
                 }
             }
 
@@ -120,7 +121,8 @@ public class BurgerFragment extends Fragment {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     LoadedMenuItems post = postSnapshot.getValue(LoadedMenuItems.class);
                     mFriesObjectArray.add(post);
-                    mSpinnerFriesArray.add(post.getName() + " +" + formatCurrency(post.getPrice() - 2));
+                    if(post.isAvailable()){
+                    mSpinnerFriesArray.add(post.getName() + " +" + formatCurrency(post.getPrice() - 2));}
                 }
             }
 

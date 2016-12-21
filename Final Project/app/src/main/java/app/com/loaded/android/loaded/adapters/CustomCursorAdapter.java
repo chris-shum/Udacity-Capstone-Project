@@ -33,7 +33,7 @@ public class CustomCursorAdapter extends CursorAdapter {
     @Override
     public void bindView(View v, Context context, Cursor c) {
         String description = c.getString(c.getColumnIndexOrThrow(ShoppingCartTable.COLUMN_DESCRIPTION));
-        String price = c.getString(c.getColumnIndexOrThrow(ShoppingCartTable.COLUMN_PRICE));
+        String price = "$"+c.getString(c.getColumnIndexOrThrow(ShoppingCartTable.COLUMN_PRICE));
 
         TextView title_text = (TextView) v.findViewById(R.id.item_order);
         if (title_text != null) {
