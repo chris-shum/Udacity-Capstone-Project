@@ -34,7 +34,7 @@ import app.com.loaded.android.loaded.data.model.LoadedMenuItems;
 import app.com.loaded.android.loaded.presenter.BuildOrderString;
 import app.com.loaded.android.loaded.presenter.UpdateTotal;
 
-import static app.com.loaded.android.loaded.adapters.FirebaseToppingsRecyclerViewAdapter.createFirebaseRecyclerViewAdapter;
+import static app.com.loaded.android.loaded.adapters.FirebaseRecyclerViewAdapter.createFirebaseToppingsRecyclerViewAdapter;
 import static app.com.loaded.android.loaded.presenter.CreateSpinner.createBurgerSpinner;
 import static app.com.loaded.android.loaded.presenter.FormatCurrency.formatCurrency;
 
@@ -187,7 +187,7 @@ public class BurgerFragment extends Fragment {
         //Initializes Recycler View and Layout Manager.
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView_toppings);
         mLinearLayoutManager = new LinearLayoutManager(mContext);
-        mRecyclerView.setAdapter(createFirebaseRecyclerViewAdapter(mFirebaseDatabase, mLinearLayoutManager, mRecyclerView, mTotalTextView, mSingleton));
+        mRecyclerView.setAdapter(createFirebaseToppingsRecyclerViewAdapter(mFirebaseDatabase, mLinearLayoutManager, mRecyclerView, mTotalTextView, mSingleton));
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
 
         mAddToCartButton.setOnClickListener(new View.OnClickListener() {

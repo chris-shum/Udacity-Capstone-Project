@@ -19,12 +19,12 @@ import static app.com.loaded.android.loaded.presenter.FormatCurrency.formatCurre
  * Created by ShowMe on 12/18/16.
  */
 
-public class FirebaseToppingsRecyclerViewAdapter {
+public class FirebaseRecyclerViewAdapter {
 
     public static FirebaseRecyclerAdapter<LoadedMenuItems, ToppingsViewHolder>
-    createFirebaseRecyclerViewAdapter(DatabaseReference firebaseDatabase,
-                                      final LinearLayoutManager manager,
-                                      final RecyclerView mRecyclerView, final TextView textView, final Singleton singleton) {
+    createFirebaseToppingsRecyclerViewAdapter(DatabaseReference firebaseDatabase,
+                                              final LinearLayoutManager manager,
+                                              final RecyclerView mRecyclerView, final TextView textView, final Singleton singleton) {
 
         final FirebaseRecyclerAdapter<LoadedMenuItems, ToppingsViewHolder> firebaseReyclerAdapter =
                 new FirebaseRecyclerAdapter<LoadedMenuItems, ToppingsViewHolder>(
@@ -51,6 +51,47 @@ public class FirebaseToppingsRecyclerViewAdapter {
                                 }
                             }
                         });
+                    }
+                };
+
+        firebaseReyclerAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onItemRangeInserted(int positionStart, int itemCount) {
+                super.onItemRangeInserted(positionStart, itemCount);
+                int friendlyMessageCount = firebaseReyclerAdapter.getItemCount();
+                int lastVisiblePosition =
+                        manager.findLastCompletelyVisibleItemPosition();
+                // If the recycler view is initially being loaded or the
+                // user is at the bottom of the list, scroll to the bottom
+                // of the list to show the newly added message.
+                if (lastVisiblePosition == -1 ||
+                        (positionStart >= (friendlyMessageCount - 1) &&
+                                lastVisiblePosition == (positionStart - 1))) {
+                    mRecyclerView.scrollToPosition(positionStart);
+                }
+            }
+        });
+        return firebaseReyclerAdapter;
+    }
+
+    public static FirebaseRecyclerAdapter<LoadedMenuItems, FriesAndBBQViewHolder>
+    createFirebaseFriesAndBBQRecyclerViewAdapter(DatabaseReference firebaseDatabase,
+                                      final LinearLayoutManager manager,
+                                      final RecyclerView mRecyclerView, final TextView textView, final Singleton singleton, String friesOrBBQ) {
+
+        final FirebaseRecyclerAdapter<LoadedMenuItems, FriesAndBBQViewHolder> firebaseReyclerAdapter =
+                new FirebaseRecyclerAdapter<LoadedMenuItems, FriesAndBBQViewHolder>(
+                        LoadedMenuItems.class,
+                        R.layout.fries_and_bbq_card,
+                        FriesAndBBQViewHolder.class,
+                        // TODO: 12/20/16 something about child texts
+                        firebaseDatabase.child("menu").child(friesOrBBQ).child("types")
+                ) {
+                    @Override
+                    protected void populateViewHolder(final FriesAndBBQViewHolder viewHolder,
+                                                      final LoadedMenuItems friesAndBBQ, int i) {
+                        // TODO: 12/20/16 string builder?
+                        viewHolder.friesAndBBQTextView.setText(friesAndBBQ.getName() + " +" + formatCurrency(friesAndBBQ.getPrice()));
                     }
                 };
 

@@ -26,11 +26,25 @@ public class MenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
 
-        mBurgerTextView = (TextView) view.findViewById(R.id.burgers);
+        mBurgerTextView = (TextView) view.findViewById(R.id.textview_menu_burgers);
         mBurgerTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clickedText();
+                clickedText("Burgers");
+            }
+        });
+        mFriesTextView = (TextView) view.findViewById(R.id.textview_menu_fries);
+        mFriesTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clickedText("Fries");
+            }
+        });
+        mBBQTextView = (TextView) view.findViewById(R.id.textview_menu_bbq);
+        mBBQTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clickedText("BBQ");
             }
         });
 
@@ -39,10 +53,23 @@ public class MenuFragment extends Fragment {
     }
 
     // TODO: 12/20/16 figure out backstack?
-    public void clickedText(){
+    public void clickedText(String food){
         Fragment fragment = null;
         Class fragmentClass;
-        fragmentClass = BurgerFragment.class;
+
+        switch (food) {
+            case "Burgers":
+                fragmentClass = BurgerFragment.class;
+                break;
+            case "Fries":
+                fragmentClass = FriesFragment.class;
+                break;
+            case "BBQ":
+                fragmentClass = BBQFragment.class;
+                break;
+            default:
+                fragmentClass = MenuFragment.class;
+        }
 
         try {
             fragment = (Fragment) fragmentClass.newInstance();
@@ -51,6 +78,5 @@ public class MenuFragment extends Fragment {
         }
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
-
     }
 }

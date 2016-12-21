@@ -2,7 +2,7 @@ package app.com.loaded.android.loaded.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.CheckBox;
+import android.widget.TextView;
 
 import app.com.loaded.android.loaded.R;
 
@@ -12,11 +12,11 @@ import app.com.loaded.android.loaded.R;
 
 public class FriesAndBBQViewHolder extends RecyclerView.ViewHolder {
 
-    public CheckBox mNameCheckBox;
+    public TextView friesAndBBQTextView;
 
     public FriesAndBBQViewHolder(View itemView) {
         super(itemView);
-        mNameCheckBox = (CheckBox) itemView.findViewById(R.id.checkbox_toppings);
+        friesAndBBQTextView = (TextView) itemView.findViewById(R.id.textview_friesAndBBQ);
     }
 
 }

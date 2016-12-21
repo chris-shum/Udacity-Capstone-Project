@@ -6,21 +6,21 @@
     tools:context="app.com.loaded.android.loaded.ui.Menu.MenuFragment">
 
     <TextView
-        android:id="@+id/burgers"
+        android:id="@+id/textview_menu_burgers"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:text="burgers" />
 
     <TextView
-        android:id="@+id/fries"
+        android:id="@+id/textview_menu_fries"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:text="fries" />
 
     <TextView
-        android:id="@+id/bbq"
+        android:id="@+id/textview_menu_bbq"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
