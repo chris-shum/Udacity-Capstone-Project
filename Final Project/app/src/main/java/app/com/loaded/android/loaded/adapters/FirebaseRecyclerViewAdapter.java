@@ -96,20 +96,28 @@ public class FirebaseRecyclerViewAdapter {
                                                       final LoadedMenuItems friesAndBBQ, int i) {
                         // TODO: 12/20/16 string builder?
                         if (friesAndBBQ.isAvailable()) {
-                            viewHolder.friesAndBBQTextView.setText(friesAndBBQ.getName() + " +" + formatCurrency(friesAndBBQ.getPrice()));
+                            viewHolder.friesAndBBQTextView.setText(friesAndBBQ.getName() + "\n+" + formatCurrency(friesAndBBQ.getPrice()));
                             viewHolder.subtractButton.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    ChangeQuantity.addQuantity(viewHolder.friesAndBBQTextView, viewHolder.quantityTextView, textView);
+                                    ChangeQuantity.subtractQuantity(viewHolder.friesAndBBQTextView, viewHolder.quantityTextView, textView);
                                 }
                             });
                             viewHolder.addButton.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    ChangeQuantity.subtractQuantity(viewHolder.friesAndBBQTextView, viewHolder.quantityTextView, textView);
-
+                                    ChangeQuantity.addQuantity(viewHolder.friesAndBBQTextView, viewHolder.quantityTextView, textView);
                                 }
                             });
+                            viewHolder.friesAndBBQTextView.setVisibility(View.VISIBLE);
+                            viewHolder.addButton.setVisibility(View.VISIBLE);
+                            viewHolder.subtractButton.setVisibility(View.VISIBLE);
+                            viewHolder.quantityTextView.setVisibility(View.VISIBLE);
+                        } else {
+                            viewHolder.friesAndBBQTextView.setVisibility(View.GONE);
+                            viewHolder.addButton.setVisibility(View.GONE);
+                            viewHolder.subtractButton.setVisibility(View.GONE);
+                            viewHolder.quantityTextView.setVisibility(View.GONE);
                         }
                     }
                 };

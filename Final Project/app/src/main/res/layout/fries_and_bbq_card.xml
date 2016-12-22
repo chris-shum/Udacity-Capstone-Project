@@ -6,25 +6,30 @@
 
     <TextView
         android:id="@+id/textview_friesAndBBQ"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="8" />
 
     <Button
         android:id="@+id/button_subtract"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="2"
         android:text="-" />
 
     <TextView
         android:id="@+id/textView_quantity"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
         android:text="0" />
 
     <Button
         android:id="@+id/button_add"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="2"
         android:text="+" />
 
 </LinearLayout>

@@ -17,7 +17,7 @@ public class ChangeQuantity {
         } else {
             newQuantity = quantity;
         }
-        quantityTextView.setText(newQuantity);
+        quantityTextView.setText(String.valueOf(newQuantity));
         UpdateTotal.updateFriesAndBBQTotal(itemTextView, totalTextView, quantity, newQuantity);
     }
 
@@ -26,11 +26,11 @@ public class ChangeQuantity {
         int quantity = Integer.valueOf(quantityTextView.getText().toString());
         int newQuantity = 0;
         if (quantity > 0) {
-            newQuantity = quantity + 1;
+            newQuantity = quantity - 1;
         } else {
             newQuantity = quantity;
         }
-        quantityTextView.setText(newQuantity);
+        quantityTextView.setText(String.valueOf(newQuantity));
         UpdateTotal.updateFriesAndBBQTotal(itemTextView, totalTextView, quantity, newQuantity);
     }
 }
