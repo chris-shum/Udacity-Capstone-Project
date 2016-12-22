@@ -46,7 +46,7 @@ public class BBQFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_bbq, container, false);
-
+        mTotalTextView = (TextView) view.findViewById(R.id.textView_bbqTotal);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView_bbq);
         mLinearLayoutManager = new LinearLayoutManager(mContext);
         mRecyclerView.setAdapter(createFirebaseFriesAndBBQRecyclerViewAdapter(mFirebaseDatabase, mLinearLayoutManager, mRecyclerView, mTotalTextView, mSingleton, "-BBQ"));

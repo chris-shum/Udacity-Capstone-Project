@@ -8,15 +8,23 @@ import android.widget.TextView;
 
 public class UpdateTotal {
 
-    public static void updateBurgerTotal(TextView textView, String cost, boolean add) {
-        String[] splitString = textView.getText().toString().split("\\$");
-        double originalPrice = Double.valueOf(splitString[1]);
-        String[] splitCost = cost.split("\\$");
-        double additionalPrice = Double.valueOf(splitCost[1]);
+    public static void updateBurgerTotal(TextView totalTextView, String itemCost, boolean add) {
+        String[] splitString = totalTextView.getText().toString().split("\\$");
+        double originalTotal = Double.valueOf(splitString[1]);
+        String[] splitCost = itemCost.split("\\$");
+        double itemPrice = Double.valueOf(splitCost[1]);
         if(add){
-            textView.setText("Total: "+FormatCurrency.formatCurrency(originalPrice+additionalPrice));
+            totalTextView.setText("Total: "+FormatCurrency.formatCurrency(originalTotal+itemPrice));
         }else{
-            textView.setText("Total: "+FormatCurrency.formatCurrency(originalPrice-additionalPrice));
+            totalTextView.setText("Total: "+FormatCurrency.formatCurrency(originalTotal-itemPrice));
         }
+    }
+
+    public static void updateFriesAndBBQTotal(TextView itemTextView, TextView totalTextView, int originalQuantity, int newQuantity){
+        String[] splitString = totalTextView.getText().toString().split("\\$");
+        double originalTotal = Double.valueOf(splitString[1]);
+        String[] splitCost = itemTextView.getText().toString().split("\\$");
+        double itemPrice = Double.valueOf(splitCost[1]);
+        totalTextView.setText("Total: "+FormatCurrency.formatCurrency(originalTotal-originalQuantity*itemPrice+newQuantity*itemPrice));
     }
 }

@@ -43,17 +43,30 @@ public class FriesFragment extends Fragment {
         mFirebaseDatabase = FirebaseDatabase.getInstance().getReference();
         mSingleton = Singleton.getInstance();
         mContext = getContext();
-        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_fries, container, false);
 
+        mTotalTextView = (TextView) view.findViewById(R.id.textView_friesTotal);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView_fries);
         mLinearLayoutManager = new LinearLayoutManager(mContext);
         mRecyclerView.setAdapter(createFirebaseFriesAndBBQRecyclerViewAdapter(mFirebaseDatabase, mLinearLayoutManager, mRecyclerView, mTotalTextView, mSingleton, "-Fries"));
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
+
+        // TODO: 12/22/16 add add to cart button where
+        /*
+                        if (mSingleton.getMeat().equals("Meat")) {
+                } else {
+                    ContentValues contentValues = new ContentValues();
+                    contentValues.put(ShoppingCartTable.COLUMN_DESCRIPTION, BuildOrderString.buildBurgerOrder(mTotalTextView));
+                    contentValues.put(ShoppingCartTable.COLUMN_PRICE, mSingleton.getPrice());
+                    BurgerFragment.SaveToDatabase saveToDatabase = new BurgerFragment.SaveToDatabase();
+                    saveToDatabase.execute(contentValues);
+                }
+         */
 
         return view;
 

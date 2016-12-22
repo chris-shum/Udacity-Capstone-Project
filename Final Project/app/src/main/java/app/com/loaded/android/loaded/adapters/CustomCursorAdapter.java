@@ -25,7 +25,7 @@ public class CustomCursorAdapter extends CursorAdapter {
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        View v = mLayoutInflater.inflate(R.layout.order_row, parent, false);
+        View v = mLayoutInflater.inflate(R.layout.shopping_cart_listview_card, parent, false);
         return v;
     }
 
