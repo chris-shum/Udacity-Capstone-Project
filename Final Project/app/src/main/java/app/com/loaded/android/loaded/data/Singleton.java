@@ -1,6 +1,7 @@
 package app.com.loaded.android.loaded.data;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by ShowMe on 8/8/16.
@@ -11,6 +12,7 @@ public class Singleton {
     ArrayList<String> toppings;
     String fries;
     String price;
+    HashMap<String, String> friesAndBBQMap;
 
     private static Singleton singleton = new Singleton();
 
@@ -63,4 +65,16 @@ public class Singleton {
     public void setPrice(String price) {
         this.price = price;
     }
+
+    public HashMap<String, String> getFriesAndBBQMap() {
+        if(friesAndBBQMap == null){
+            friesAndBBQMap = new HashMap<>();
+        }
+        return friesAndBBQMap;
+    }
+
+    public void setFriesAndBBQMap(HashMap<String, String> friesAndBBQMap) {
+        this.friesAndBBQMap = friesAndBBQMap;
+    }
+
 }

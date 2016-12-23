@@ -98,12 +98,10 @@
             android:text="Total: $9.00" />
 
         <Button
-            android:id="@+id/button_addToCart"
+            android:id="@+id/button_burgers_addToCart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add to cart"
-            app:layout_constraintRight_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_fries" />
+            android:text="Add to cart" />
 
     </LinearLayout>
 

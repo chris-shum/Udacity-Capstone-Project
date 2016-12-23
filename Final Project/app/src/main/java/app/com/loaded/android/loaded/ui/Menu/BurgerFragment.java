@@ -138,7 +138,7 @@ public class BurgerFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_burger, container, false);
         mTotalTextView = (TextView) view.findViewById(R.id.textView_burgerTotal);
-        mAddToCartButton = (Button) view.findViewById(R.id.button_addToCart);
+        mAddToCartButton = (Button) view.findViewById(R.id.button_burgers_addToCart);
 
         createBurgerSpinner(view.getContext(), android.R.layout.simple_spinner_item, mSpinnerMeatArray, view.findViewById(R.id.spinner_meat)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

@@ -30,6 +30,7 @@
             android:text="Total: $0.00" />
 
         <Button
+            android:id="@+id/button_fries_addToCart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add to cart" />
