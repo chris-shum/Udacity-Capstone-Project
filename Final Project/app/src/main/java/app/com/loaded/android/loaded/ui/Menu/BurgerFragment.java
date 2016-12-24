@@ -55,11 +55,6 @@ public class BurgerFragment extends Fragment {
     Button mAddToCartButton;
     Singleton mSingleton;
 
-
-    // TODO: 12/18/16 selections add prices and changes textview on bottom total
-    // TODO: 12/18/16 add add to cart buttons
-    // TODO: 12/18/16 add to cart buttons need to add data to sqlite database via content provider
-
     public BurgerFragment() {
         // Required empty public constructor
     }

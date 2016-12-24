@@ -9,8 +9,6 @@ import android.util.Log;
 
 public class ShoppingCartTable {
 
-    // TODO: 12/19/16 update
-
     // Database table
     public static final String TABLE_SHOPPING_CART = "shoppingcart";
     public static final String COLUMN_ID = "_id";

@@ -26,7 +26,7 @@ import app.com.loaded.android.loaded.data.local.ShoppingCartContentProvider;
 import app.com.loaded.android.loaded.data.local.ShoppingCartTable;
 import app.com.loaded.android.loaded.presenter.FormatCurrency;
 
-public class CartFragment extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor> {
+public class ShoppingCartFragment extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
     Button mEmptyCartButton;
     private Context mContext;
@@ -44,7 +44,7 @@ public class CartFragment extends ListFragment implements LoaderManager.LoaderCa
         setListAdapter(mAdapter);
     }
 
-    public CartFragment() {
+    public ShoppingCartFragment() {
         // Required empty public constructor
     }
 

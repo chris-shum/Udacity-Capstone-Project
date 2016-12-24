@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity
                 fragmentClass = MenuFragment.class;
                 break;
             case R.id.nav_slideshow:
-                fragmentClass = CartFragment.class;
+                fragmentClass = ShoppingCartFragment.class;
                 break;
             default:
                 fragmentClass = MainFragment.class;
