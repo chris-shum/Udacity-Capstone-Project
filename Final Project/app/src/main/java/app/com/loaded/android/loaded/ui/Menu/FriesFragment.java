@@ -55,6 +55,9 @@ public class FriesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        container.setPadding(64,64,64,64);
+
         View view = inflater.inflate(R.layout.fragment_fries, container, false);
 
         mTotalTextView = (TextView) view.findViewById(R.id.textView_friesTotal);

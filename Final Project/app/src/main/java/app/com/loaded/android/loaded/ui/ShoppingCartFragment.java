@@ -12,7 +12,6 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.CursorAdapter;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +50,8 @@ public class ShoppingCartFragment extends ListFragment implements LoaderManager.
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        container.setPadding(64,64,64,64);
+
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
         mContext = getContext();
         mTotalTextView = (TextView) view.findViewById(R.id.textView_cartTotal);
@@ -98,10 +99,10 @@ public class ShoppingCartFragment extends ListFragment implements LoaderManager.
         while (data.moveToNext()) {
             String price = data.getString(data.getColumnIndex("price"));
             Double tempPrice = Double.valueOf(price);
-            Log.d("test", " " + price);
             mTotalDouble += tempPrice;
         }
-        mTotalTextView.setText("Total: " + FormatCurrency.formatCurrency(mTotalDouble));
+        mTotalDouble *= 1.08;
+        mTotalTextView.setText("Total +tax: " + FormatCurrency.formatCurrency(mTotalDouble));
     }
 
     @Override

@@ -1,22 +1,58 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context="app.com.loaded.android.loaded.ui.MainFragment">
 
-    <TextView
+
+    <ImageView
+        android:id="@+id/imageView_main_loadedLogo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Main" />
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/textView_main_shpiel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageView_main_loadedLogo"
+        android:gravity="center_horizontal"
+        android:text="ALL NATURAL, GRASS FED AND SUSTAINIBLY RAISED BEEF" />
+
+    <TextView
+        android:id="@+id/textView_main_hours"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView_main_shpiel"
+        android:gravity="center_horizontal"
+        android:text="Monday-Saturday: 11am - 9pm\nSunday: 1pm-6pm" />
+
+    <TextView
+        android:id="@+id/textView_main_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView_main_hours"
+        android:autoLink="map"
+        android:gravity="center_horizontal"
+        android:text="101 Center Street, Garwood, NJ 07027" />
+
+    <TextView
+        android:id="@+id/textView_main_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView_main_address"
+        android:autoLink="phone"
+        android:gravity="center_horizontal"
+        android:text="908-264-7222" />
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         ads:adSize="BANNER"
-        ads:adUnitId="@string/banner_ad_unit_id">
-    </com.google.android.gms.ads.AdView>
+        ads:adUnitId="@string/banner_ad_unit_id" />
 
-</LinearLayout>
+</RelativeLayout>

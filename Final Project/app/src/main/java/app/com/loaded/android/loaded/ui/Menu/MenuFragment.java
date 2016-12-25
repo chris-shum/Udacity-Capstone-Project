@@ -7,18 +7,19 @@ import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import app.com.loaded.android.loaded.R;
+import app.com.loaded.android.loaded.presenter.CustomPicassoLayout;
 
 public class MenuFragment extends Fragment {
 
-    TextView mBurgerTextView;
-    TextView mFriesTextView;
-    TextView mBBQTextView;
+    CustomPicassoLayout mBurgerTextView;
+    CustomPicassoLayout mFriesTextView;
+    CustomPicassoLayout mBBQTextView;
 
     public MenuFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -26,21 +27,28 @@ public class MenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
 
-        mBurgerTextView = (TextView) view.findViewById(R.id.textview_menu_burgers);
+        container.setPadding(0,0,0,0);
+        mBurgerTextView = (CustomPicassoLayout) view.findViewById(R.id.textview_menu_burgers);
+        Picasso.with(view.getContext()).load("https://scontent.fewr1-2.fna.fbcdn.net/v/t1.0-9/10492027_949936778387503_5151553114551951097_n.jpg?oh=42688c135b12a83dfde306bf356d03c2&oe=58E40CEE").into(mBurgerTextView);
+
         mBurgerTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 clickedText("Burgers");
             }
         });
-        mFriesTextView = (TextView) view.findViewById(R.id.textview_menu_fries);
+        mFriesTextView = (CustomPicassoLayout) view.findViewById(R.id.textview_menu_fries);
+        Picasso.with(view.getContext()).load("https://scontent.fewr1-2.fna.fbcdn.net/v/t1.0-9/12096452_1014543561926824_9098923290040425899_n.jpg?oh=1e2b448c02a4d31ab06096f13ddd9a44&oe=58F25FE5").into(mFriesTextView);
+
         mFriesTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 clickedText("Fries");
             }
         });
-        mBBQTextView = (TextView) view.findViewById(R.id.textview_menu_bbq);
+        mBBQTextView = (CustomPicassoLayout) view.findViewById(R.id.textview_menu_bbq);
+        Picasso.with(view.getContext()).load("https://scontent.fewr1-2.fna.fbcdn.net/v/t1.0-9/12027814_1011620845552429_3054100526418314299_n.jpg?oh=8646e9a09291eb8a3062312ab4e0ce40&oe=58F24978").into(mBBQTextView);
+
         mBBQTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,7 +56,6 @@ public class MenuFragment extends Fragment {
             }
         });
 
-        // Inflate the layout for this fragment
         return view;
     }
 
@@ -79,4 +86,6 @@ public class MenuFragment extends Fragment {
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
     }
+
+
 }

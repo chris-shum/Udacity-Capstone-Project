@@ -99,8 +99,9 @@ public class BurgerFragment extends Fragment {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     LoadedMenuItems post = postSnapshot.getValue(LoadedMenuItems.class);
                     mCheesesObjectArray.add(post);
-                    if(post.isAvailable()){
-                    mSpinnerCheesesArray.add(post.getName() + " +" + formatCurrency(post.getPrice()));}
+                    if (post.isAvailable()) {
+                        mSpinnerCheesesArray.add(post.getName() + " +" + formatCurrency(post.getPrice()));
+                    }
                 }
             }
 
@@ -116,8 +117,9 @@ public class BurgerFragment extends Fragment {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     LoadedMenuItems post = postSnapshot.getValue(LoadedMenuItems.class);
                     mFriesObjectArray.add(post);
-                    if(post.isAvailable()){
-                    mSpinnerFriesArray.add(post.getName() + " +" + formatCurrency(post.getPrice() - 2));}
+                    if (post.isAvailable()) {
+                        mSpinnerFriesArray.add(post.getName() + " +" + formatCurrency(post.getPrice() - 2));
+                    }
                 }
             }
 
@@ -131,6 +133,8 @@ public class BurgerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        container.setPadding(64,64,64,64);
+
         View view = inflater.inflate(R.layout.fragment_burger, container, false);
         mTotalTextView = (TextView) view.findViewById(R.id.textView_burgerTotal);
         mAddToCartButton = (Button) view.findViewById(R.id.button_burgers_addToCart);

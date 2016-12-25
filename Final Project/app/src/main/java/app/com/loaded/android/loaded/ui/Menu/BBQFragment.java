@@ -52,6 +52,8 @@ public class BBQFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        container.setPadding(64,64,64,64);
+
         View view = inflater.inflate(R.layout.fragment_bbq, container, false);
         mTotalTextView = (TextView) view.findViewById(R.id.textView_bbqTotal);
         mAddToCartButton = (Button) view.findViewById(R.id.button_bbq_addToCart);

@@ -5,17 +5,19 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+import com.squareup.picasso.Picasso;
 
 import app.com.loaded.android.loaded.R;
 
 
 public class MainFragment extends Fragment {
 
-//    private DatabaseReference mFirebaseDatabaseReference;
+    ImageView mLogoImageView;
 
     public MainFragment() {
         // Required empty public constructor
@@ -27,7 +29,13 @@ public class MainFragment extends Fragment {
         // Inflate the layout for this fragment
         // TODO: 12/14/16 constraint layout and add homepage stuff
 
+        container.setPadding(64,64,64,64);
+
+
         View view = inflater.inflate(R.layout.fragment_main, container, false);
+
+        mLogoImageView = (ImageView) view.findViewById(R.id.imageView_main_loadedLogo);
+        Picasso.with(view.getContext()).load("http://loadednj.com/wp-content/uploads/2016/05/cropped-loaded-logo.jpg").into(mLogoImageView);
 
         MobileAds.initialize(getActivity().getApplicationContext(), "ca-app-pub-4193213438982161~1829803539");
         AdView mAdView = (AdView) view.findViewById(R.id.adView);
