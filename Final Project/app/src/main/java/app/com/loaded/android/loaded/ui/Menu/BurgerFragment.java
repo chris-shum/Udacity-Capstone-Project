@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.database.DataSnapshot;
@@ -136,7 +137,7 @@ public class BurgerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        container.setPadding(64,64,64,64);
+        container.setPadding(64, 32, 64, 32);
 
         View view = inflater.inflate(R.layout.fragment_burger, container, false);
         mTotalTextView = (TextView) view.findViewById(R.id.textView_burgerTotal);
@@ -207,6 +208,7 @@ public class BurgerFragment extends Fragment {
                     BurgerFragment.SaveToDatabase saveToDatabase = new BurgerFragment.SaveToDatabase();
                     saveToDatabase.execute(contentValues);
                     mFirebaseAnalytics.setUserProperty("favorite_food", BuildOrderString.buildBurgerOrder(mTotalTextView));
+                    Toast.makeText(getContext(), getResources().getString(R.string.confirm_added), Toast.LENGTH_SHORT).show();
                 }
             }
         });

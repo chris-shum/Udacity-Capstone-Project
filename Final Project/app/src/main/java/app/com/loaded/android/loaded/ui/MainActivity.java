@@ -87,7 +87,8 @@ public class MainActivity extends AppCompatActivity
 
         // Insert the fragment by replacing any existing fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
+        fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment)
+                .addToBackStack(null).commit();
 
         // Highlight the selected item has been done by NavigationView
         item.setChecked(true);
@@ -98,4 +99,5 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }

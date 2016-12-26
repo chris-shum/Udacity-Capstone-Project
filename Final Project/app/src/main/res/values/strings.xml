@@ -22,8 +22,8 @@
     <string name="order_button">Order</string>
 
     <string name="shpiel">All natural, grass fed and sustainably raised beef!</string>
-    <string name="hours">Monday-Saturday: 11am - 9pm\nSunday: 1pm-6pm</string>
-    <string name="addres">101 Center Street, Garwood, NJ 07027</string>
+    <string name="hours">Monday-Saturday: 11am - 9pm\nSunday: 1pm - 6pm</string>
+    <string name="addres">101 Center Street\nGarwood, NJ 07027</string>
     <string name="phone_number">908-264-7222</string>
     <string name="banner_ad_unit_id">ca-app-pub-4193213438982161/3306536736</string>
 
@@ -44,7 +44,9 @@
     <string name="bbq_image">https://scontent.fewr1-2.fna.fbcdn.net/v/t1.0-9/12027814_1011620845552429_3054100526418314299_n.jpg?oh=8646e9a09291eb8a3062312ab4e0ce40&amp;oe=58F24978</string>
 
     <string name="logo_image">http://loadednj.com/wp-content/uploads/2016/05/cropped-loaded-logo.jpg</string>
-    <string name="admob">"ca-app-pub-4193213438982161~1829803539"</string>
+    <string name="admob">ca-app-pub-4193213438982161~1829803539</string>
+
+    <string name="confirm_added">"Added to cart"</string>
 
 
 </resources>

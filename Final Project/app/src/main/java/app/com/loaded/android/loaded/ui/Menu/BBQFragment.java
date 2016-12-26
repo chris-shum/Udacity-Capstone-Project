@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -79,6 +80,7 @@ public class BBQFragment extends Fragment {
                         saveToDatabase.execute(contentValues);
                     }
                     mSingleton.getFriesAndBBQMap().clear();
+                    Toast.makeText(getContext(), getResources().getString(R.string.confirm_added), Toast.LENGTH_SHORT).show();
                 }
             }
         });

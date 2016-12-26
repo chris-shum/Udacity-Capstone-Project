@@ -9,13 +9,15 @@
         android:id="@+id/item_order"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="2" />
+        android:layout_weight="2"
+        android:textAppearance="@android:style/TextAppearance.Material.Large" />
 
     <TextView
         android:id="@+id/item_price"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:gravity="end" />
+        android:gravity="end"
+        android:textAppearance="@android:style/TextAppearance.Material.Large" />
 
 </LinearLayout>

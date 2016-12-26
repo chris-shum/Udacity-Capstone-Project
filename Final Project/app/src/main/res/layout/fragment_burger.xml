@@ -20,7 +20,8 @@
                 android:id="@+id/textView_meat_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/meat"
+                android:text="@string/meat_burgers"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,6 +29,7 @@
                 android:id="@+id/spinner_meat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
                 app:layout_constraintLeft_toRightOf="@+id/textView_meat_spinner"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,7 +37,8 @@
                 android:id="@+id/textView_cheeses_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/cheese"
+                android:text="@string/cheese_burgers"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/spinner_meat" />
 
@@ -43,6 +46,7 @@
                 android:id="@+id/spinner_cheeses"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
                 app:layout_constraintLeft_toRightOf="@+id/textView_meat_spinner"
                 app:layout_constraintTop_toBottomOf="@+id/spinner_meat" />
 
@@ -50,7 +54,8 @@
                 android:id="@+id/textView_toppings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/toppings"
+                android:text="@string/toppings_burgers"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
                 app:layout_constraintLeft_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/spinner_cheeses" />
 
@@ -58,6 +63,7 @@
                 android:id="@+id/recyclerView_toppings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
                 app:layout_constraintLeft_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView_toppings" />
 
@@ -65,7 +71,8 @@
                 android:id="@+id/textView_fries_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/fries"
+                android:text="@string/fries_burgers"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/recyclerView_toppings" />
 
@@ -89,7 +96,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/burger_start_total" />
+            android:text="@string/burger_start_total"
+            android:textAppearance="@android:style/TextAppearance.Material.Large" />
 
         <Button
             android:id="@+id/button_burgers_addToCart"

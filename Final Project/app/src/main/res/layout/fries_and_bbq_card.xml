@@ -10,7 +10,8 @@
         android:id="@+id/textview_friesAndBBQ"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="8" />
+        android:layout_weight="8"
+        android:textAppearance="@android:style/TextAppearance.Material.Large" />
 
     <Button
         android:id="@+id/button_subtract"
@@ -25,7 +26,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="@string/quantity_start" />
+        android:text="@string/quantity_start"
+        android:textAppearance="@android:style/TextAppearance.Material.Large" />
 
     <Button
         android:id="@+id/button_add"

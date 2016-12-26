@@ -3,6 +3,14 @@ apply plugin: 'com.google.gms.google-services'
 
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'UdacityKey'
+            keyPassword 'Udacity'
+            storeFile file('/Users/ShowMe/Documents/uDacity/Udacity-Capstone-Project/Keystore/loaded.jks')
+            storePassword 'Dagger0123!'
+        }
+    }
     compileSdkVersion 25
     buildToolsVersion "25.0.0"
     defaultConfig {
@@ -17,6 +25,9 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.config
         }
     }
 }

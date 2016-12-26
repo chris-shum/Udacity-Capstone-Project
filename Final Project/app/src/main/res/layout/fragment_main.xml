@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/imageView_main_loadedLogo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="86dp"
         android:layout_centerHorizontal="true" />
 
     <TextView
@@ -17,34 +17,46 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/imageView_main_loadedLogo"
+        android:layout_margin="@dimen/activity_margin"
         android:gravity="center_horizontal"
-        android:text="@string/shpiel" />
+        android:text="@string/shpiel"
+        android:textAppearance="@android:style/TextAppearance.Material.Large" />
 
     <TextView
         android:id="@+id/textView_main_hours"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/textView_main_shpiel"
+        android:layout_margin="@dimen/activity_margin"
         android:gravity="center_horizontal"
-        android:text="@string/hours" />
+        android:text="@string/hours"
+        android:textAppearance="@android:style/TextAppearance.Material.Large" />
 
     <TextView
         android:id="@+id/textView_main_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/textView_main_hours"
+        android:layout_margin="@dimen/activity_margin"
         android:autoLink="map"
         android:gravity="center_horizontal"
-        android:text="@string/hours" />
+        android:text="@string/addres"
+        android:textAppearance="@android:style/TextAppearance.Material.Large"
+        android:textColor="@android:color/black"
+        android:textColorLink="@android:color/black" />
 
     <TextView
         android:id="@+id/textView_main_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/textView_main_address"
+        android:layout_margin="@dimen/activity_margin"
         android:autoLink="phone"
         android:gravity="center_horizontal"
-        android:text="@string/phone_number" />
+        android:text="@string/phone_number"
+        android:textAppearance="@android:style/TextAppearance.Material.Large"
+        android:textColor="@android:color/black"
+        android:textColorLink="@android:color/black" />
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"

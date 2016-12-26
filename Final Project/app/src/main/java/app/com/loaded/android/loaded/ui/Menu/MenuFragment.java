@@ -84,6 +84,6 @@ public class MenuFragment extends Fragment {
             e.printStackTrace();
         }
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
+        fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).addToBackStack(null).commit();
     }
 }

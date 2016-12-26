@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -55,7 +56,7 @@ public class FriesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        container.setPadding(64,64,64,64);
+        container.setPadding(64, 64, 64, 64);
 
         View view = inflater.inflate(R.layout.fragment_fries, container, false);
         mTotalTextView = (TextView) view.findViewById(R.id.textView_friesTotal);
@@ -73,7 +74,7 @@ public class FriesFragment extends Fragment {
                 } else {
                     for (String key : mSingleton.getFriesAndBBQMap().keySet()) {
                         String[] boop = key.split("\\$");
-                        double price = Double.valueOf(boop[1])*Double.valueOf(mSingleton.getFriesAndBBQMap().get(key).toString());
+                        double price = Double.valueOf(boop[1]) * Double.valueOf(mSingleton.getFriesAndBBQMap().get(key).toString());
                         String description = mSingleton.getFriesAndBBQMap().get(key) + "x " + key;
                         String[] newPrice = FormatCurrency.formatCurrency(price).split("\\$");
                         ContentValues contentValues = new ContentValues();
@@ -83,12 +84,14 @@ public class FriesFragment extends Fragment {
                         saveToDatabase.execute(contentValues);
                     }
                     mSingleton.getFriesAndBBQMap().clear();
+                    Toast.makeText(getContext(), getResources().getString(R.string.confirm_added), Toast.LENGTH_SHORT).show();
                 }
             }
         });
         return view;
 
     }
+
     private class SaveToDatabase extends AsyncTask<ContentValues, Void, Void> {
         @Override
         protected Void doInBackground(ContentValues... contentValues) {

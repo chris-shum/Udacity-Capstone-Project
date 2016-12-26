@@ -9,31 +9,30 @@
         android:id="@+id/textview_menu_burgers"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:textSize="20sp"
-        android:textColor="@android:color/white"
-        android:gravity="bottom|center_horizontal"
         android:layout_weight="1"
-        android:text="@string/burgers_menu" />
+        android:gravity="center"
+        android:text="@string/burgers_menu"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/menu_text" />
 
     <app.com.loaded.android.loaded.presenter.CustomPicassoLayout
         android:id="@+id/textview_menu_fries"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:textSize="20sp"
-        android:textColor="@android:color/white"
-        android:gravity="bottom|center_horizontal"
         android:layout_weight="1"
-        android:text="@string/fries_menu" />
+        android:gravity="center"
+        android:text="@string/fries_menu"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/menu_text" />
 
     <app.com.loaded.android.loaded.presenter.CustomPicassoLayout
         android:id="@+id/textview_menu_bbq"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:textSize="20sp"
-        android:textColor="@android:color/white"
-        android:gravity="bottom|center_horizontal"
         android:layout_weight="1"
-        android:text="@string/bbq_menu" />
-
+        android:gravity="center"
+        android:text="@string/bbq_menu"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/menu_text" />
 
 </LinearLayout>

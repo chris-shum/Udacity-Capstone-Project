@@ -66,11 +66,18 @@ public class ShoppingCartFragment extends ListFragment implements LoaderManager.
             }
         });
         mOrderButton = (Button) view.findViewById(R.id.button_placeOrder);
-        // TODO: 12/25/16 integrate Venmo
         mOrderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(view.getContext(), "Ordered", Toast.LENGTH_SHORT).show();
+                // TODO: 12/25/16 integrate Venmo
+                /*
+                https://github.com/venmo/app-switch-android
+                Venmo library takes intents like below:
+                Intent venmoIntent = VenmoLibrary.openVenmoPayment(appId, appName, recipient, amount, note, txn);
+                startActivityForResult(venmoIntent, REQUEST_CODE_VENMO_APP_SWITCH);
+                Can put the order from contentprovider into "note" and total into "amount" to sent order and payment to restaurant
+                 */
             }
         });
         return view;
@@ -110,7 +117,7 @@ public class ShoppingCartFragment extends ListFragment implements LoaderManager.
             mTotalDouble += tempPrice;
         }
         mTotalDouble *= 1.08;
-        mTotalTextView.setText("Total +tax: " + FormatCurrency.formatCurrency(mTotalDouble));
+        mTotalTextView.setText("Total +Tax: " + FormatCurrency.formatCurrency(mTotalDouble));
     }
 
     @Override
