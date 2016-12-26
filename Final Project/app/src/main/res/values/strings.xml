@@ -48,5 +48,9 @@
 
     <string name="confirm_added">"Added to cart"</string>
 
+    <string name="nav_drawer_home">"Home"</string>
+    <string name="nav_drawer_menu">"Menu"</string>
+    <string name="nav_drawer_cart">"Cart"</string>
+
 
 </resources>

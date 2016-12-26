@@ -65,13 +65,13 @@ public class MainActivity extends AppCompatActivity
         Class fragmentClass;
 
         switch (id) {
-            case R.id.nav_camera:
+            case R.id.nav_home:
                 fragmentClass = MainFragment.class;
                 break;
-            case R.id.nav_gallery:
+            case R.id.nav_menu:
                 fragmentClass = MenuFragment.class;
                 break;
-            case R.id.nav_slideshow:
+            case R.id.nav_cart:
                 fragmentClass = ShoppingCartFragment.class;
                 break;
             default:

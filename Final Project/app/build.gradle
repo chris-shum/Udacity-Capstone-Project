@@ -6,8 +6,8 @@ android {
     signingConfigs {
         config {
             keyAlias 'UdacityKey'
-            keyPassword 'udacity'
-            storeFile file('/Users/ShowMe/Documents/uDacity/Udacity-Capstone-Project/Keystore/loaded.jks')
+            keyPassword 'Udacity'
+            storeFile file('keystore/loaded.jks')
             storePassword 'Dagger0123!'
         }
     }
@@ -25,6 +25,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
         debug {
             signingConfig signingConfigs.config
