@@ -1,4 +1,4 @@
-package app.com.loaded.android.loaded;
+package app.com.loaded.android.loaded.ui;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -12,6 +12,8 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import app.com.loaded.android.loaded.R;
 
 /**
  * Implementation of App Widget functionality.

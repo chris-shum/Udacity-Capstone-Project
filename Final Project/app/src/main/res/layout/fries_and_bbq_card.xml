@@ -17,7 +17,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="2"
-        android:text="-" />
+        android:text="@string/minus_button" />
 
     <TextView
         android:id="@+id/textView_quantity"
@@ -25,13 +25,13 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="0" />
+        android:text="@string/quantity_start" />
 
     <Button
         android:id="@+id/button_add"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="2"
-        android:text="+" />
+        android:text="@string/plus_button" />
 
 </LinearLayout>

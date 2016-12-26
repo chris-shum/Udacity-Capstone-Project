@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import app.com.loaded.android.loaded.R;
 import app.com.loaded.android.loaded.adapters.CustomCursorAdapter;
@@ -27,12 +28,13 @@ import app.com.loaded.android.loaded.presenter.FormatCurrency;
 
 public class ShoppingCartFragment extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
-    Button mEmptyCartButton;
-    private Context mContext;
-    Cursor mCursor;
     CursorAdapter mAdapter;
+    Cursor mCursor;
+    private Context mContext;
     TextView mTotalTextView;
+    Button mEmptyCartButton, mOrderButton;
     double mTotalDouble;
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -50,7 +52,7 @@ public class ShoppingCartFragment extends ListFragment implements LoaderManager.
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        container.setPadding(64,64,64,64);
+        container.setPadding(64, 64, 64, 64);
 
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
         mContext = getContext();
@@ -63,8 +65,14 @@ public class ShoppingCartFragment extends ListFragment implements LoaderManager.
                 deleteAllFromDatabase.execute();
             }
         });
-
-        // Inflate the layout for this fragment
+        mOrderButton = (Button) view.findViewById(R.id.button_placeOrder);
+        // TODO: 12/25/16 integrate Venmo
+        mOrderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(view.getContext(), "Ordered", Toast.LENGTH_SHORT).show();
+            }
+        });
         return view;
     }
 

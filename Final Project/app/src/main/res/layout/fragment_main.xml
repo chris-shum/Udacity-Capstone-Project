@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/imageView_main_loadedLogo"
         android:gravity="center_horizontal"
-        android:text="ALL NATURAL, GRASS FED AND SUSTAINIBLY RAISED BEEF" />
+        android:text="@string/shpiel" />
 
     <TextView
         android:id="@+id/textView_main_hours"
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/textView_main_shpiel"
         android:gravity="center_horizontal"
-        android:text="Monday-Saturday: 11am - 9pm\nSunday: 1pm-6pm" />
+        android:text="@string/hours" />
 
     <TextView
         android:id="@+id/textView_main_address"
@@ -35,7 +35,7 @@
         android:layout_below="@id/textView_main_hours"
         android:autoLink="map"
         android:gravity="center_horizontal"
-        android:text="101 Center Street, Garwood, NJ 07027" />
+        android:text="@string/hours" />
 
     <TextView
         android:id="@+id/textView_main_number"
@@ -44,7 +44,7 @@
         android:layout_below="@id/textView_main_address"
         android:autoLink="phone"
         android:gravity="center_horizontal"
-        android:text="908-264-7222" />
+        android:text="@string/phone_number" />
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"

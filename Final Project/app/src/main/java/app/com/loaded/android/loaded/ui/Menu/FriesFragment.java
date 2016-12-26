@@ -38,7 +38,6 @@ public class FriesFragment extends Fragment {
     Singleton mSingleton;
     Button mAddToCartButton;
 
-
     public FriesFragment() {
         // Required empty public constructor
     }
@@ -59,7 +58,6 @@ public class FriesFragment extends Fragment {
         container.setPadding(64,64,64,64);
 
         View view = inflater.inflate(R.layout.fragment_fries, container, false);
-
         mTotalTextView = (TextView) view.findViewById(R.id.textView_friesTotal);
         mAddToCartButton = (Button) view.findViewById(R.id.button_fries_addToCart);
 
@@ -86,15 +84,11 @@ public class FriesFragment extends Fragment {
                     }
                     mSingleton.getFriesAndBBQMap().clear();
                 }
-
             }
         });
-
-
         return view;
 
     }
-
     private class SaveToDatabase extends AsyncTask<ContentValues, Void, Void> {
         @Override
         protected Void doInBackground(ContentValues... contentValues) {
@@ -102,5 +96,4 @@ public class FriesFragment extends Fragment {
             return null;
         }
     }
-
 }

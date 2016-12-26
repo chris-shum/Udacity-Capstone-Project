@@ -29,15 +29,14 @@ public class MainFragment extends Fragment {
         // Inflate the layout for this fragment
         // TODO: 12/14/16 constraint layout and add homepage stuff
 
-        container.setPadding(64,64,64,64);
-
+        container.setPadding(64, 64, 64, 64);
 
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
         mLogoImageView = (ImageView) view.findViewById(R.id.imageView_main_loadedLogo);
-        Picasso.with(view.getContext()).load("http://loadednj.com/wp-content/uploads/2016/05/cropped-loaded-logo.jpg").into(mLogoImageView);
+        Picasso.with(view.getContext()).load(getResources().getString(R.string.logo_image)).into(mLogoImageView);
 
-        MobileAds.initialize(getActivity().getApplicationContext(), "ca-app-pub-4193213438982161~1829803539");
+        MobileAds.initialize(getActivity().getApplicationContext(), getResources().getString(R.string.admob));
         AdView mAdView = (AdView) view.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);

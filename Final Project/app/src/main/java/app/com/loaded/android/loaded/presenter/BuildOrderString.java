@@ -30,12 +30,4 @@ public class BuildOrderString {
                 + "cheese and " + toppings + ". \n" + fries[0] + ".";
         return outputMessage;
     }
-
-    public static String buildFriesAndBBQOrder() {
-        Singleton mSingleton = Singleton.getInstance();
-//        String quantity =
-//        mSingleton.getFriesAndBBQMap().get();
-
-        return"x ";
-    }
 }

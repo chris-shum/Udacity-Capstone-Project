@@ -6,10 +6,45 @@
 
     <string name="action_settings">Settings</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-    <string name="banner_ad_unit_id">ca-app-pub-4193213438982161/3306536736</string>
-    <string name="appwidget_text">EXAMPLE</string>
+    <string name="appwidget_text">Loaded</string>
     <string name="add_widget">Add widget</string>
+
+    <string name="fries_and_bbq_start_total">Total: $0.00</string>
+    <string name="burger_start_total">Total: $9.00</string>
+    <string name="add_to_cart_button">Add to cart</string>
+
+    <string name="meat_burgers">Meat:</string>
+    <string name="cheese_burgers">Cheese:</string>
+    <string name="toppings_burgers">Toppings:</string>
+    <string name="fries_burgers">Fries:</string>
+
+    <string name="empty_cart_button">Empty Cart</string>
+    <string name="order_button">Order</string>
+
+    <string name="shpiel">All natural, grass fed and sustainably raised beef!</string>
+    <string name="hours">Monday-Saturday: 11am - 9pm\nSunday: 1pm-6pm</string>
+    <string name="addres">101 Center Street, Garwood, NJ 07027</string>
+    <string name="phone_number">908-264-7222</string>
+    <string name="banner_ad_unit_id">ca-app-pub-4193213438982161/3306536736</string>
+
+    <string name="burgers_menu">Burgers</string>
+    <string name="fries_menu">Fries</string>
+    <string name="bbq_menu">BBQ</string>
+
+    <string name="minus_button">-</string>
+    <string name="quantity_start">0</string>
+    <string name="plus_button">+</string>
+
+    <string name="loaded">Loaded</string>
+    <string name="loaded2">Loaded Burgers and BBQ</string>
+    <string name="loaded3">Call Loaded</string>
+
+    <string name="burger_image">https://scontent.fewr1-2.fna.fbcdn.net/v/t1.0-9/10492027_949936778387503_5151553114551951097_n.jpg?oh=42688c135b12a83dfde306bf356d03c2&amp;oe=58E40CEE</string>
+    <string name="fries_image">https://scontent.fewr1-2.fna.fbcdn.net/v/t1.0-9/12096452_1014543561926824_9098923290040425899_n.jpg?oh=1e2b448c02a4d31ab06096f13ddd9a44&amp;oe=58F25FE5</string>
+    <string name="bbq_image">https://scontent.fewr1-2.fna.fbcdn.net/v/t1.0-9/12027814_1011620845552429_3054100526418314299_n.jpg?oh=8646e9a09291eb8a3062312ab4e0ce40&amp;oe=58F24978</string>
+
+    <string name="logo_image">http://loadednj.com/wp-content/uploads/2016/05/cropped-loaded-logo.jpg</string>
+    <string name="admob">"ca-app-pub-4193213438982161~1829803539"</string>
+
 
 </resources>

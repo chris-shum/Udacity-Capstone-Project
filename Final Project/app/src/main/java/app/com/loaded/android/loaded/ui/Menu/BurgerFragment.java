@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -43,17 +44,19 @@ import static app.com.loaded.android.loaded.presenter.FormatCurrency.formatCurre
  */
 public class BurgerFragment extends Fragment {
 
-    List<String> mSpinnerMeatArray, mSpinnerCheesesArray, mSpinnerFriesArray;
-    List<LoadedMenuItems> mCheesesObjectArray, mFriesObjectArray;
+
     DatabaseReference mFirebaseDatabase;
     private Context mContext;
-    private RecyclerView mRecyclerView;
-    private LinearLayoutManager mLinearLayoutManager;
+    Singleton mSingleton;
+    List<String> mSpinnerMeatArray, mSpinnerCheesesArray, mSpinnerFriesArray;
+    List<LoadedMenuItems> mCheesesObjectArray, mFriesObjectArray;
     TextView mTotalTextView;
     String mLastCheeseItem = "No cheese +$0.00";
     String mLastFriesItem = "No fries +$0.00";
+    RecyclerView mRecyclerView;
+    LinearLayoutManager mLinearLayoutManager;
+    private FirebaseAnalytics mFirebaseAnalytics;
     Button mAddToCartButton;
-    Singleton mSingleton;
 
     public BurgerFragment() {
         // Required empty public constructor
@@ -189,18 +192,22 @@ public class BurgerFragment extends Fragment {
         mRecyclerView.setAdapter(createFirebaseToppingsRecyclerViewAdapter(mFirebaseDatabase, mLinearLayoutManager, mRecyclerView, mTotalTextView, mSingleton));
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
 
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(view.getContext());
+
         mAddToCartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (mSingleton.getMeat().equals("Meat")) {
                 } else {
+                    // TODO: 12/20/16 open dialogbox to confirm order or have a toast?
                     ContentValues contentValues = new ContentValues();
                     contentValues.put(ShoppingCartTable.COLUMN_DESCRIPTION, BuildOrderString.buildBurgerOrder(mTotalTextView));
                     contentValues.put(ShoppingCartTable.COLUMN_PRICE, mSingleton.getPrice());
                     BurgerFragment.SaveToDatabase saveToDatabase = new BurgerFragment.SaveToDatabase();
                     saveToDatabase.execute(contentValues);
+                    mFirebaseAnalytics.setUserProperty("favorite_food", BuildOrderString.buildBurgerOrder(mTotalTextView));
                 }
-                // TODO: 12/20/16 open dialogbox to confirm order
             }
         });
         return view;

@@ -12,8 +12,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.google.firebase.analytics.FirebaseAnalytics;
-
 import app.com.loaded.android.loaded.R;
 import app.com.loaded.android.loaded.ui.Menu.MenuFragment;
 
@@ -21,7 +19,6 @@ import app.com.loaded.android.loaded.ui.Menu.MenuFragment;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +43,6 @@ public class MainActivity extends AppCompatActivity
         MainFragment firstFragment = new MainFragment();
         fragmentTransaction.add(R.id.fragment_container, firstFragment);
         fragmentTransaction.commit();
-
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-        // TODO: 12/25/16 add singleton information
-        mFirebaseAnalytics.setUserProperty("favorite_food", "Womp");
     }
 
     @Override

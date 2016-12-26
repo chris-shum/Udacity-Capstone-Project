@@ -29,7 +29,7 @@ public class MenuFragment extends Fragment {
 
         container.setPadding(0,0,0,0);
         mBurgerTextView = (CustomPicassoLayout) view.findViewById(R.id.textview_menu_burgers);
-        Picasso.with(view.getContext()).load("https://scontent.fewr1-2.fna.fbcdn.net/v/t1.0-9/10492027_949936778387503_5151553114551951097_n.jpg?oh=42688c135b12a83dfde306bf356d03c2&oe=58E40CEE").into(mBurgerTextView);
+        Picasso.with(view.getContext()).load(getResources().getString(R.string.burger_image)).into(mBurgerTextView);
 
         mBurgerTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,7 +38,7 @@ public class MenuFragment extends Fragment {
             }
         });
         mFriesTextView = (CustomPicassoLayout) view.findViewById(R.id.textview_menu_fries);
-        Picasso.with(view.getContext()).load("https://scontent.fewr1-2.fna.fbcdn.net/v/t1.0-9/12096452_1014543561926824_9098923290040425899_n.jpg?oh=1e2b448c02a4d31ab06096f13ddd9a44&oe=58F25FE5").into(mFriesTextView);
+        Picasso.with(view.getContext()).load(getResources().getString(R.string.fries_image)).into(mFriesTextView);
 
         mFriesTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,7 +47,7 @@ public class MenuFragment extends Fragment {
             }
         });
         mBBQTextView = (CustomPicassoLayout) view.findViewById(R.id.textview_menu_bbq);
-        Picasso.with(view.getContext()).load("https://scontent.fewr1-2.fna.fbcdn.net/v/t1.0-9/12027814_1011620845552429_3054100526418314299_n.jpg?oh=8646e9a09291eb8a3062312ab4e0ce40&oe=58F24978").into(mBBQTextView);
+        Picasso.with(view.getContext()).load(getResources().getString(R.string.bbq_image)).into(mBBQTextView);
 
         mBBQTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,6 +86,4 @@ public class MenuFragment extends Fragment {
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
     }
-
-
 }

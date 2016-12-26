@@ -20,14 +20,14 @@
                 android:id="@+id/textView_meat_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Meat:"
+                android:text="@string/meat"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Spinner
                 android:id="@+id/spinner_meat"
                 android:layout_width="wrap_content"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 app:layout_constraintLeft_toRightOf="@+id/textView_meat_spinner"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,14 +35,14 @@
                 android:id="@+id/textView_cheeses_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cheese:"
+                android:text="@string/cheese"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/spinner_meat" />
 
             <Spinner
                 android:id="@+id/spinner_cheeses"
                 android:layout_width="wrap_content"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 app:layout_constraintLeft_toRightOf="@+id/textView_meat_spinner"
                 app:layout_constraintTop_toBottomOf="@+id/spinner_meat" />
 
@@ -50,7 +50,7 @@
                 android:id="@+id/textView_toppings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Toppings:"
+                android:text="@string/toppings"
                 app:layout_constraintLeft_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/spinner_cheeses" />
 
@@ -65,14 +65,14 @@
                 android:id="@+id/textView_fries_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Fries"
+                android:text="@string/fries"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/recyclerView_toppings" />
 
             <Spinner
                 android:id="@+id/spinner_fries"
                 android:layout_width="wrap_content"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 app:layout_constraintLeft_toRightOf="@+id/textView_fries_spinner"
                 app:layout_constraintTop_toBottomOf="@+id/recyclerView_toppings" />
 
@@ -89,13 +89,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Total: $9.00" />
+            android:text="@string/burger_start_total" />
 
         <Button
             android:id="@+id/button_burgers_addToCart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add to cart" />
+            android:text="@string/add_to_cart_button" />
 
     </LinearLayout>
 

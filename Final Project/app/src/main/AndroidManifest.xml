@@ -30,7 +30,7 @@
             android:name=".data.local.ShoppingCartContentProvider"
             android:authorities="app.com.loaded.android.loaded.data.local" />
 
-        <receiver android:name=".NewAppWidget">
+        <receiver android:name=".ui.NewAppWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name="APP.COM.LOADED.ANDROID.LOADED.WIDGET_BUTTON.WIDGET_BUTTON" />

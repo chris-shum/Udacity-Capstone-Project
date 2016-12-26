@@ -35,7 +35,6 @@ public class BBQFragment extends Fragment {
     Singleton mSingleton;
     Button mAddToCartButton;
 
-
     public BBQFragment() {
         // Required empty public constructor
     }
