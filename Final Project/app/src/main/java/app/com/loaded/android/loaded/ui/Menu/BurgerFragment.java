@@ -201,7 +201,6 @@ public class BurgerFragment extends Fragment {
             public void onClick(View view) {
                 if (mSingleton.getMeat().equals("Meat")) {
                 } else {
-                    // TODO: 12/20/16 open dialogbox to confirm order or have a toast?
                     ContentValues contentValues = new ContentValues();
                     contentValues.put(ShoppingCartTable.COLUMN_DESCRIPTION, BuildOrderString.buildBurgerOrder(mTotalTextView));
                     contentValues.put(ShoppingCartTable.COLUMN_PRICE, mSingleton.getPrice());

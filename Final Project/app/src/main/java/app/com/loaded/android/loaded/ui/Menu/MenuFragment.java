@@ -59,7 +59,6 @@ public class MenuFragment extends Fragment {
         return view;
     }
 
-    // TODO: 12/20/16 figure out backstack?
     public void clickedText(String food){
         Fragment fragment = null;
         Class fragmentClass;

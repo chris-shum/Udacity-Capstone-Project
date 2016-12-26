@@ -6,7 +6,7 @@ android {
     signingConfigs {
         config {
             keyAlias 'UdacityKey'
-            keyPassword 'Udacity'
+            keyPassword 'udacity'
             storeFile file('/Users/ShowMe/Documents/uDacity/Udacity-Capstone-Project/Keystore/loaded.jks')
             storePassword 'Dagger0123!'
         }
@@ -43,7 +43,6 @@ dependencies {
     compile 'com.google.firebase:firebase-core:10.0.1'
     compile 'com.google.firebase:firebase-database:10.0.1'
     compile 'com.firebaseui:firebase-ui-database:1.0.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
     testCompile 'junit:junit:4.12'
     compile 'com.google.firebase:firebase-ads:10.0.1'
     compile 'com.squareup.picasso:picasso:2.5.2'

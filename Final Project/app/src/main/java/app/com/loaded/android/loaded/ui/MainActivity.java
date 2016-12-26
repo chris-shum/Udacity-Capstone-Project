@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        // TODO: 12/20/16 figure out backstack?
         Fragment fragment = null;
         Class fragmentClass;
 

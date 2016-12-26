@@ -21,67 +21,51 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/meat_burgers"
-                android:textAppearance="@android:style/TextAppearance.Material.Large"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textAppearance="@android:style/TextAppearance.Material.Large" />
 
             <Spinner
                 android:id="@+id/spinner_meat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                app:layout_constraintLeft_toRightOf="@+id/textView_meat_spinner"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_marginBottom="@dimen/activity_vertical_margin" />
 
             <TextView
                 android:id="@+id/textView_cheeses_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/cheese_burgers"
-                android:textAppearance="@android:style/TextAppearance.Material.Large"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner_meat" />
+                android:textAppearance="@android:style/TextAppearance.Material.Large" />
 
             <Spinner
                 android:id="@+id/spinner_cheeses"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                app:layout_constraintLeft_toRightOf="@+id/textView_meat_spinner"
-                app:layout_constraintTop_toBottomOf="@+id/spinner_meat" />
+                android:layout_marginBottom="@dimen/activity_vertical_margin" />
 
             <TextView
                 android:id="@+id/textView_toppings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/toppings_burgers"
-                android:textAppearance="@android:style/TextAppearance.Material.Large"
-                app:layout_constraintLeft_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner_cheeses" />
+                android:textAppearance="@android:style/TextAppearance.Material.Large" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView_toppings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                app:layout_constraintLeft_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_toppings" />
+                android:layout_marginBottom="@dimen/activity_vertical_margin" />
 
             <TextView
                 android:id="@+id/textView_fries_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/fries_burgers"
-                android:textAppearance="@android:style/TextAppearance.Material.Large"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerView_toppings" />
+                android:textAppearance="@android:style/TextAppearance.Material.Large" />
 
             <Spinner
                 android:id="@+id/spinner_fries"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintLeft_toRightOf="@+id/textView_fries_spinner"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerView_toppings" />
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
     </ScrollView>
