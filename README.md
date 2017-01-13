@@ -9,6 +9,8 @@ Loaded is an app created for <a href = "http://loadednj.com/">Loaded Burgers-N-B
 ###Libraries used:
 - <a href = "https://firebase.google.com/">Firebase</a>
 - <a href = "https://github.com/square/picasso">Picasso</a>
+- <a href = "https://firebase.google.com/docs/admob/">Admob</a>
+- <a href = "https://firebase.google.com/docs/analytics/">Analytics</a>
 
 ###ToDo:
 In order to make it a full functional app, once this app passes Udacity's review, I intend to add real payment function through the use of <a href = "https://github.com/venmo/app-switch-android">Venmo</a>.  Additionally, I will work with the owners of Loaded to improve upon the UI depending on their wants.
